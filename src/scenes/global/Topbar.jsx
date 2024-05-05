@@ -6,9 +6,8 @@ import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import SearchIcon from '@mui/icons-material/Search'
-
+import Profile from './Profile'
 
 function Topbar() {
   const theme = useTheme()
@@ -20,11 +19,13 @@ function Topbar() {
       {/*SEARCH BAR */}
       <Box
         display={'flex'}
+        marginLeft={'10px'}
         backgroundColor = {colors.primary[900]}
-        borderRadius={'3px'}
-        height={'40px'}
+        borderRadius={'5px'}
+        height={'3rem'}
+        width={'16rem'}
       >
-        < InputBase sx={{ ml: 2, flex: 1 }} placeholder='Search'/>
+        < InputBase sx={{ ml: 2, flex: 1 }} placeholder='Search product or any order...'/>
         <IconButton type='button' sx={{ p:1 }}>
           <SearchIcon/>
         </IconButton>
@@ -43,7 +44,7 @@ function Topbar() {
           <SettingsOutlinedIcon/>
         </IconButton>
         <IconButton>
-          <PersonOutlinedIcon/>
+          <Profile/>
         </IconButton>
       </Box>
     </Box>
