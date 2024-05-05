@@ -1,7 +1,16 @@
+import { Box, useTheme } from '@mui/material'
+import { tokens } from '../../theme'
+import Header from '~/components/Header'
 
-function Dashboard() {
+const Dashboard = () => {
+  const theme = useTheme()
+  const colors = tokens(theme.palette.mode)
+
   return (
-    <div>Dashboard</div>
+    <Box>
+      {/* HEADER */}
+      <Header title="TABLE LIST" />
+    </Box>
   )
 }
 

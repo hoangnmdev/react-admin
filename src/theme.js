@@ -202,7 +202,7 @@ export const ColorModeContext = createContext({
 })
 
 export const useMode = () => {
-  // giá trị mặc đinh là 'light', setMode cập nhật giá trị mode (state variable), từ đó re-render, cập nhật lại UI với giá trị mới
+  // giá trị mặc đinh là 'dark', setMode cập nhật giá trị mode (state variable), từ đó re-render, cập nhật lại UI với giá trị mới
   const [mode, setMode] = useState('light')
 
   const colorMode = useMemo(
