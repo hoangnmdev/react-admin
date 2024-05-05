@@ -11,6 +11,7 @@ import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'
+import { useNavigate } from 'react-router-dom'
 
 const Item = ({ title, icon, selected, setSelected }) => {
   const theme = useTheme()
@@ -32,8 +33,9 @@ const Item = ({ title, icon, selected, setSelected }) => {
 const Sidebar= () => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
-  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(true)
   const [selected, setSelected] = useState('dashboard')
+
   return (
     <Box
       sx={{
