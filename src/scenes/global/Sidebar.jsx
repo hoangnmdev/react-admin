@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar'
 import { Box, IconButton, Typography, useTheme } from '@mui/material'
-import { Link } from 'react-router-dom'
 import 'react-pro-sidebar/dist/css/styles.css'
 import { tokens } from '../../theme'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
@@ -11,7 +10,6 @@ import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined'
 import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutlined'
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
-import MapOutlinedIcon from '@mui/icons-material/MapOutlined'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'
 
 const Item = ({ title, icon, selected, setSelected }) => {
@@ -49,7 +47,7 @@ const Sidebar= () => {
           backgroundColor: 'transparent !important'
         },
         '& .pro-inner-item': {
-          padding: '5px 35px 5px 20px !important'
+          padding: '5px 35px 30px 20px !important'
         },
         '& .pro-inner-item:hover': {
           color: '#868dfb !important'
@@ -108,11 +106,11 @@ const Sidebar= () => {
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined : '10%'}>
+          <Box paddingLeft={isCollapsed ? undefined : '10%'} paddingTop="20px">
             <Item
               title="Dashboard"
               to="/"
-              icon={<HomeOutlinedIcon />}
+              icon={<HomeOutlinedIcon sx={{ fontSize: '30px' }} />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -120,15 +118,16 @@ const Sidebar= () => {
             <Item
               title="Menu"
               to="/team"
-              icon={<RestaurantMenuIcon />}
+              icon={<RestaurantMenuIcon sx={{ fontSize: '30px' }}/>}
               selected={selected}
               setSelected={setSelected}
+
             />
 
             <Item
               title="Payment"
               to="/team"
-              icon={<PaymentIcon />}
+              icon={<PaymentIcon sx={{ fontSize: '30px' }}/>}
               selected={selected}
               setSelected={setSelected}
             />
@@ -136,7 +135,7 @@ const Sidebar= () => {
             <Item
               title="Orders"
               to="/team"
-              icon={<BorderAllIcon />}
+              icon={<BorderAllIcon sx={{ fontSize: '30px' }}/>}
               selected={selected}
               setSelected={setSelected}
             />
@@ -144,21 +143,21 @@ const Sidebar= () => {
             <Item
               title="Bar Chart"
               to="/bar"
-              icon={<BarChartOutlinedIcon />}
+              icon={<BarChartOutlinedIcon sx={{ fontSize: '30px' }}/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Pie Chart"
               to="/pie"
-              icon={<PieChartOutlineOutlinedIcon />}
+              icon={<PieChartOutlineOutlinedIcon sx={{ fontSize: '30px' }}/>}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Line Chart"
               to="/line"
-              icon={<TimelineOutlinedIcon />}
+              icon={<TimelineOutlinedIcon sx={{ fontSize: '30px' }}/>}
               selected={selected}
               setSelected={setSelected}
             />
