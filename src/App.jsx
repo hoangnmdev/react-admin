@@ -20,12 +20,12 @@ function App() {
           <Sidebar isSideBar = {isSideBar}/>
           <main className='content'>
             <Topbar setIsSideBar= {setIsSideBar}/>
-            <hr style={{
+            {/* <hr style={{
               border: 0,
               height: 0,
               borderTop: '2px solid rgba(0, 0, 0, 0.1)',
               borderBottom: '1px solid rgba(255, 255, 255, 0.3)'
-            }}/>
+            }}/> */}
             <BrowserRouter>
               <Routes>
                 <Route path="/dashboard" element={<Dashboard />} />
