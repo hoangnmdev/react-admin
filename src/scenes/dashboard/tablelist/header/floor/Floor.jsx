@@ -6,14 +6,20 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-function Floor() {
+function Floor({ onFloorSelect }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
     setAnchorEl(null)
+  }
+  const handleFloorSelect = (floor) => {
+    setAnchorEl(null)
+    // Call the function passed as a prop
+    onFloorSelect(floor)
   }
   return (
     <Box p={'15px'}>
@@ -53,7 +59,8 @@ function Floor() {
           'aria-labelledby': 'basic-button-workspace'
         }}
       >
-        <MenuItem>
+        {/* Call the handleFloorSelect function with floor name */}
+        <MenuItem onClick={() => handleFloorSelect('First floor')}>
           <Button sx={{ width: '100px', height: '20px' }}>
             <Typography sx={{
               fontSize: '15px',
@@ -64,14 +71,8 @@ function Floor() {
             </Typography>
           </Button>
         </MenuItem>
-        {/** customed horizontal line  */}
-        <hr style={{
-          border: 0,
-          height: 0,
-          borderTop: '2px solid rgba(0, 0, 0, 0.1)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.3)'
-        }}/>
-        <MenuItem>
+        {/* Call the handleFloorSelect function with floor name */}
+        <MenuItem onClick={() => handleFloorSelect('Second floor')}>
           <Button sx={{ width: '100px', height: '20px' }}>
             <Typography sx={{
               fontSize: '15px',

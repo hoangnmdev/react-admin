@@ -11,6 +11,7 @@ import Menu from './scenes/menu/Menu'
 function App() {
   const [theme, colorMode] = useMode()
   const [isSideBar, setIsSideBar] = useState(true)
+
   return (
     // Step 3: Provide the context
     <ColorModeContext.Provider value={colorMode}>
