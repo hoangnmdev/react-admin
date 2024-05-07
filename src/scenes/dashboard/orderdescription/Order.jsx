@@ -10,7 +10,7 @@ function Order() {
       width={'calc(100% - 1000px)'}
       bgcolor={'#EEF7FF'}
       height={'calc(100vh - 70px)'}
-    >
+    > Order description
       {/*Header*/}
       {/*Details*/}
 

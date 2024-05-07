@@ -2,7 +2,7 @@ import { Box, useTheme, Typography } from '@mui/material'
 import { tokens } from '~/theme'
 import Floor from './floor/Floor'
 
-function Header() {
+function Header({ handleFloorSelect }) {
   const theme = useTheme()
   // const colors = tokens(theme.palette.mode)
 
@@ -26,7 +26,8 @@ function Header() {
         </Typography>
       </Box>
       {/**Floor button */}
-      <Floor/>
+      {/* Pass the handleFloorSelect function as a prop */}
+      <Floor onFloorSelect={handleFloorSelect}/>
     </Box>
   )
 }
