@@ -3,6 +3,7 @@ import { tokens } from '~/theme'
 import Header from './header/Header'
 import Content from './content/Content'
 import { useState } from 'react'
+import Footer from './footer/Footer'
 
 function TableList() {
   // const theme = useTheme()
@@ -31,19 +32,17 @@ function TableList() {
   }
 
   return (
-    <Box width={'1000px'}>
+    <Box
+      width={'1000px'}
+      borderRight= '2px solid rgba(0, 0, 0, 0.1)'
+    >
       {/**Header */}
       {/* Pass the handleFloorSelect function as a prop */}
       <Header handleFloorSelect={handleFloorSelect}/>
       {/*Content*/}
       <Content tableList={tableList}/>
       {/*Footer*/}
-      <Box
-        bgcolor={'#CDE8E5'}
-        height={'calc(100vh - 70px - 60px - 400px)'}
-      >
-
-      </Box>
+      <Footer/>
     </Box>
   )
 }

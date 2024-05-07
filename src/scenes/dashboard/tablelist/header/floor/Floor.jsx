@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 function Floor({ onFloorSelect }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const [selectedFloor, setSelectedFloor] = React.useState('First floor') // State to track selected floor
   const open = Boolean(anchorEl)
 
   const handleClick = (event) => {
@@ -19,6 +20,7 @@ function Floor({ onFloorSelect }) {
   const handleFloorSelect = (floor) => {
     setAnchorEl(null)
     // Call the function passed as a prop
+    setSelectedFloor(floor) // Update selected floor
     onFloorSelect(floor)
   }
   return (
@@ -28,9 +30,9 @@ function Floor({ onFloorSelect }) {
         sx={{
           mr:'10px',
           '&.MuiButton-containedPrimary': {
-            backgroundColor: '#F3CA52',
+            backgroundColor: '#D8AE7E',
             boxShadow: 'none',
-            width: '130px'
+            width: '150px'
           }
         }}
         variant="contained"
@@ -46,7 +48,7 @@ function Floor({ onFloorSelect }) {
           '&.MuiTypography-root.MuiTypography-body1': { textTransform: 'none' }
         }}
         color="initial">
-        Floor Menu
+          {selectedFloor}
         </Typography>
       </Button>
       {/**Drop floor menu */}
@@ -60,8 +62,14 @@ function Floor({ onFloorSelect }) {
         }}
       >
         {/* Call the handleFloorSelect function with floor name */}
-        <MenuItem onClick={() => handleFloorSelect('First floor')}>
-          <Button sx={{ width: '100px', height: '20px' }}>
+        <MenuItem
+          onClick={() => handleFloorSelect('First floor')}
+          sx={{ bgcolor:'white' }}>
+          <Button sx={{
+            width: '120px',
+            height: '20px',
+            '&.MuiButton-root': { pointerEvents:'none' }
+          }}>
             <Typography sx={{
               fontSize: '15px',
               '&.MuiTypography-root.MuiTypography-body1': { textTransform: 'none' }
@@ -72,8 +80,17 @@ function Floor({ onFloorSelect }) {
           </Button>
         </MenuItem>
         {/* Call the handleFloorSelect function with floor name */}
-        <MenuItem onClick={() => handleFloorSelect('Second floor')}>
-          <Button sx={{ width: '100px', height: '20px' }}>
+        <MenuItem
+          onClick={() => handleFloorSelect('Second floor')}
+          sx={{
+            bgcolor: 'white',
+            borderTop: '2px solid rgba(0, 0, 0, 0.1)'
+          }}>
+          <Button sx={{
+            width: '120px',
+            height: '20px',
+            '&.MuiButton-root': { pointerEvents:'none' }
+          }}>
             <Typography sx={{
               fontSize: '15px',
               '&.MuiTypography-root.MuiTypography-body1': { textTransform: 'none' }
