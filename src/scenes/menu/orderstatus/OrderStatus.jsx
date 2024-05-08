@@ -1,8 +1,8 @@
-import { Box, useTheme } from '@mui/material'
+import { Box } from '@mui/material'
 
-import Header from './Header'
-import Title from './Title'
-import Content from './Content'
+import Header from './header/Header'
+import Title from './header/Title'
+import Content from './content/Content'
 
 function OrderStatus() {
   return (

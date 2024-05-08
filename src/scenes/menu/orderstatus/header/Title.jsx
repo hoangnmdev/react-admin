@@ -1,4 +1,4 @@
-import { Box, useTheme, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import TableBarIcon from '@mui/icons-material/TableBar'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
 
