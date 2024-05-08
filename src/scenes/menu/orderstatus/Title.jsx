@@ -8,7 +8,6 @@ function Title() {
       display={'flex'}
       justifyContent={'space-between'}
       p={'0px 25px 15px 21px'}
-      borderBottom= '2px dashed rgba(0, 0, 0, 0.1)'
       height={'40px'}
     >
       <Box display={'flex'}>
