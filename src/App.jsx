@@ -2,7 +2,7 @@ import { ThemeProvider } from '@emotion/react'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ColorModeContext, useMode } from './theme'
 import Topbar from './scenes/global/Topbar'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import Dashboard from './scenes/dashboard/Dashboard'
 import Sidebar from './scenes/global/Sidebar'
 import { useState } from 'react'
@@ -18,15 +18,16 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline/>
         <div className='app'>
-          <Sidebar isSideBar = {isSideBar}/>
+          <Sidebar isSideBar={isSideBar} />
           <main className='content'>
-            <Topbar setIsSideBar= {setIsSideBar}/>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path='/menu' element={<Menu/>}/>
-              </Routes>
-            </BrowserRouter>
+            <Topbar setIsSideBar={setIsSideBar} />
+            <Routes>
+              {/* Redirect from root to /dashboard */}
+              <Route path="/" element={<Navigate to="/dashboard" />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/menu" element={<Menu />} />
+              <Route path="/payment" element={<Menu />} />
+            </Routes>
           </main>
         </div>
       </ThemeProvider>

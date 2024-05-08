@@ -49,7 +49,7 @@ function Price() {
         <Button
           sx={{
             '&.MuiButton-containedPrimary': {
-              bgcolor: '#D24545',
+              bgcolor: '#FF6868',
               boxShadow: 'none',
               width: '150px',
               height: '50px',
