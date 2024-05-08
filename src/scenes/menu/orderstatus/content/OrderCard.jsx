@@ -2,8 +2,6 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
-import CardContent from '@mui/material/CardContent'
-
 
 export default function MediaControlCard() {
 
@@ -17,9 +15,10 @@ export default function MediaControlCard() {
         justifyContent={'center'}
         justifyItems={'center'}
         display={'flex'}
-        width={'400px'}
+        width={'380px'}
         height={'200px'}
         border= '3px dashed rgba(0, 0, 0, 0.1)'
+        borderRadius={'10px'}
       >
         <div style={{ display:  'block' }}>
           <Card
@@ -49,12 +48,12 @@ export default function MediaControlCard() {
               />
               <Box pl ={'18px'}>
                 <Typography fontSize={'13px'} color="initial" fontWeight={'510'}>CHICKEN WINGS</Typography>
-                <Typography variant='h2'>$10</Typography>
+                <Typography variant='h2' fontWeight={'600'}>$10</Typography>
               </Box>
             </Box>
             <Box textAlign={'center'} sx={{ m: ' 4px 20px 4px 12px' }}>
               <Typography fontSize={'13px'} fontWeight={'510'} color="initial">QUANTITY</Typography>
-              <Typography variant='h2'>1</Typography>
+              <Typography variant='h2'fontWeight={'600'}>1</Typography>
             </Box>
           </Card>
           <Card
@@ -84,12 +83,12 @@ export default function MediaControlCard() {
               />
               <Box pl ={'18px'}>
                 <Typography fontSize={'13px'} color="initial" fontWeight={'510'}>CHICKEN WINGS</Typography>
-                <Typography variant='h2'>$10</Typography>
+                <Typography variant='h2' fontWeight={'600'}>$10</Typography>
               </Box>
             </Box>
             <Box textAlign={'center'} sx={{ m: ' 4px 20px 4px 12px' }}>
               <Typography fontSize={'13px'} fontWeight={'510'} color="initial">QUANTITY</Typography>
-              <Typography variant='h2'>1</Typography>
+              <Typography variant='h2'fontWeight={'600'}>1</Typography>
             </Box>
           </Card>
           <Card
@@ -119,12 +118,12 @@ export default function MediaControlCard() {
               />
               <Box pl ={'18px'}>
                 <Typography fontSize={'13px'} color="initial" fontWeight={'510'}>CHICKEN WINGS</Typography>
-                <Typography variant='h2'>$10</Typography>
+                <Typography variant='h2' fontWeight={'600'}>$10</Typography>
               </Box>
             </Box>
             <Box textAlign={'center'} sx={{ m: ' 4px 20px 4px 12px' }}>
               <Typography fontSize={'13px'} fontWeight={'510'} color="initial">QUANTITY</Typography>
-              <Typography variant='h2'>1</Typography>
+              <Typography variant='h2'fontWeight={'600'}>1</Typography>
             </Box>
           </Card>
         </div>
