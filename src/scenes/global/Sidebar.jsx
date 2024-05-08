@@ -11,9 +11,9 @@ import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-const Item = ({ title, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
   return (
@@ -26,10 +26,11 @@ const Item = ({ title, icon, selected, setSelected }) => {
       icon={icon}
     >
       <Typography>{title}</Typography>
-      {/* <Link to={to} /> */}
+      <Link to={to} />
     </MenuItem>
   )
 }
+
 const Sidebar= () => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
@@ -111,7 +112,7 @@ const Sidebar= () => {
           <Box paddingLeft={isCollapsed ? undefined : '10%'} paddingTop="20px">
             <Item
               title="Dashboard"
-              to="/"
+              to="/dashboard"
               icon={<HomeOutlinedIcon sx={{ fontSize: '30px' }} />}
               selected={selected}
               setSelected={setSelected}
@@ -119,7 +120,7 @@ const Sidebar= () => {
 
             <Item
               title="Menu"
-              to="/team"
+              to="/menu"
               icon={<RestaurantMenuIcon sx={{ fontSize: '30px' }}/>}
               selected={selected}
               setSelected={setSelected}
@@ -128,7 +129,7 @@ const Sidebar= () => {
 
             <Item
               title="Payment"
-              to="/team"
+              to="/payment"
               icon={<PaymentIcon sx={{ fontSize: '30px' }}/>}
               selected={selected}
               setSelected={setSelected}
