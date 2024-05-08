@@ -7,6 +7,7 @@ import Dashboard from './scenes/dashboard/Dashboard'
 import Sidebar from './scenes/global/Sidebar'
 import { useState } from 'react'
 import Menu from './scenes/menu/Menu'
+import Payment from '~/scenes/payment/Payment'
 
 function App() {
   const [theme, colorMode] = useMode()
@@ -26,7 +27,7 @@ function App() {
               <Route path="/" element={<Navigate to="/dashboard" />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/menu" element={<Menu />} />
-              <Route path="/payment" element={<Menu />} />
+              <Route path="/payment" element={<Payment />} />
             </Routes>
           </main>
         </div>
