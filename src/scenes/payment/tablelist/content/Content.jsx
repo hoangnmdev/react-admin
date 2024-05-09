@@ -7,37 +7,40 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
+import { capitalizeLabels } from '~/utils/formatter'
+
+const LABEL = {
+  label_item:'Item',
+  label_price: 'Price',
+  label_quantity:'Quantity',
+  label_subtotal: 'Subtotal'
+}
+// Call the function and pass the LABEL object to capitalize the labels
+const capitalizedLabel = capitalizeLabels(LABEL)
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+  { id: 'item', label: capitalizedLabel.label_item, minWidth: 170 },
+  { id: 'price', label: capitalizedLabel.label_price, minWidth: 100 },
   {
-    id: 'population',
-    label: 'Population',
+    id: 'quantity',
+    label: capitalizedLabel.label_quantity,
     minWidth: 170,
     align: 'right',
     format: (value) => value.toLocaleString('en-US')
   },
   {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
+    id: 'subtotal',
+    label: capitalizedLabel.label_subtotal,
     minWidth: 170,
     align: 'right',
     format: (value) => value.toLocaleString('en-US')
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2)
   }
 ]
 
-function createData(name, code, population, size) {
-  const density = population / size
-  return { name, code, population, size, density }
+function createData(item, price, quantity, subtotal) {
+  const density = quantity / subtotal
+  return { item, price, quantity, subtotal, density }
 }
 
 const rows = [
@@ -83,7 +86,7 @@ export default function Content() {
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                   >
-                    {column.label}
+                    <Typography variant="h6" color="initial">{column.label}</Typography>
                   </TableCell>
                 ))}
               </TableRow>
@@ -93,7 +96,7 @@ export default function Content() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.price}>
                       {columns.map((column) => {
                         const value = row[column.id]
                         return (
