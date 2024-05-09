@@ -75,10 +75,13 @@ export default function Content() {
   }
   return (
     <Box alignItems={'center'} justifyContent={'center'} display={'flex'}>
-      <Paper sx={{ width: '800px', overflow: 'hidden'}}>
+      <Paper sx={{ width: '800px', overflow: 'hidden',
+        '&.MuiPaper-root': { boxShadow: 'none' },
+        bgcolor: '#FAFAFA'
+      }}>
         <TableContainer sx={{ height: '350px' }}>
           <Table stickyHeader aria-label="sticky table">
-            <TableHead>
+            <TableHead sx={{ '& .MuiTableCell-head': { backgroundColor: '#F1F2EB' } }}>
               <TableRow>
                 {columns.map((column) => (
                   <TableCell
@@ -86,7 +89,8 @@ export default function Content() {
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                   >
-                    <Typography variant="h6" color="initial">{column.label}</Typography>
+                    {/**Column label value */}
+                    <Typography variant="h6" color="initial" fontWeight={'600'}>{column.label}</Typography>
                   </TableCell>
                 ))}
               </TableRow>
@@ -100,7 +104,15 @@ export default function Content() {
                       {columns.map((column) => {
                         const value = row[column.id]
                         return (
-                          <TableCell key={column.id} align={column.align}>
+                          <TableCell
+                            key={column.id}
+                            align={column.align}
+                            style={{
+                              fontWeight: '600',
+                              textTransform: column.id === 'item' ? 'uppercase' : 'lowercase',
+                              fontSize: '15px'
+                            }}
+                          >
                             {column.format && typeof value === 'number'
                               ? column.format(value)
                               : value}
