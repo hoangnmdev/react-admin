@@ -12,6 +12,7 @@ import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'
 import { Link } from 'react-router-dom'
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme()
@@ -164,6 +165,11 @@ const Sidebar= () => {
               selected={selected}
               setSelected={setSelected}
             />
+            <Box justifyContent={'center'} justifyItems={'center'} display={'flex'}>
+              <IconButton >
+                <SettingsOutlinedIcon/>
+              </IconButton >
+            </Box>
           </Box>
         </Menu>
       </ProSidebar>

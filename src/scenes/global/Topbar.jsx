@@ -1,19 +1,31 @@
-import { Box, IconButton, useTheme } from '@mui/material'
+import { Box, IconButton, useTheme, Typography } from '@mui/material'
 import { useContext } from 'react'
 import { ColorModeContext, tokens } from '../../theme'
 import InputBase from '@mui/material/InputBase'
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import Profile from '~/components/Profile'
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
+import { displayCalendar } from '~/utils/calendar'
+import { useState, useEffect} from 'react'
 
 function Topbar() {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
   // Step 2: Use  the Context
   const colorMode = useContext(ColorModeContext)
+  const [currentTime, setCurrentTime] = useState('')
+
+  // Update the current time every second
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const timeString = displayCalendar() // Call the displayCalendar function to get the time string
+      setCurrentTime(timeString) // Update the state with the current time
+    }, 1000)
+    // Cleanup function to clear the interval when component unmounts
+    return () => clearInterval(intervalId)
+  }, [])
+
   return (
     <Box display={'flex'}
       justifyContent={'space-between'}
@@ -37,15 +49,14 @@ function Topbar() {
 
       {/*ICONS */}
       <Box display={'flex'}>
-        <IconButton onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === 'dark' ? (<DarkModeOutlinedIcon/>)
-            : (<LightModeOutlinedIcon/>)}
-        </IconButton>
+        <Box 
+          display={'flex'} alignItems={'center'}
+        >
+          <CalendarTodayIcon/>
+          <Typography fontSize={'15px'} mr={'1.5rem'} ml={'0.25rem'}>{currentTime}</Typography>
+        </Box>
         <IconButton>
           <NotificationsOutlinedIcon/>
-        </IconButton>
-        <IconButton>
-          <SettingsOutlinedIcon/>
         </IconButton>
         <IconButton>
           <Profile/>
