@@ -223,11 +223,11 @@ function Content() {
             </Box>
           </Box>
           <Box sx={{ position: 'relative' }} >
-            <Box sx={{position: 'absolute', top: 0, right: 0, bottom: 0 }}>
+            <Box sx={{ position: 'absolute', top: 0, right: 0, bottom: 0 }}>
               <Typography fontSize={'13px'} fontWeight={'510'} color="initial">${SUBTOTAL_NUMBER}</Typography>
               {/* <Typography fontSize={'13px'} fontWeight={'510'} color="initial">${TIP_NUMBER_1}</Typography> */}
             </Box>
-            <Box sx={{position: 'absolute', right: 0, top: 18, bottom:0 }}>
+            <Box sx={{ position: 'absolute', right: 0, top: 18, bottom:0 }}>
               <Typography fontSize={'13px'} fontWeight={'510'} color="initial">${TIP_NUMBER_1}</Typography>
             </Box>
             <Box sx={{ position: 'absolute', top: 40, right: 0 }}>
@@ -274,8 +274,6 @@ function Content() {
         </Box>
       </Box>
     </Box>
-
-    
   )
 }
 

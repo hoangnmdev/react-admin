@@ -16,7 +16,7 @@ export function displayCalendar(timeString) {
   minutes = minutes < 10 ? '0' + minutes : minutes
   var dateSuffix = getDateSuffix(date) // Get the ordinal suffix for the date
   var dateString = date + dateSuffix
-  timeString =  dateString + ' ' + month + ' ' + year + ', '+ hours + ':'+ minutes + ampm
+  timeString = dateString + ' ' + month + ' ' + year + ', '+ hours + ':'+ minutes + ampm
   return timeString
 }
 

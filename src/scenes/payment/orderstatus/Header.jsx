@@ -24,7 +24,7 @@ function Header() {
           ml={'10px'}
         >
           {/**Truyền id order */}
-  {ORDER_ID}
+          {ORDER_ID}
         </Typography>
       </Box>
     </Box>
