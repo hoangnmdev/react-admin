@@ -1,7 +1,9 @@
 import { Box, useTheme, Typography } from '@mui/material'
 import { capitalizeLetter } from '~/utils/formatter'
 
-const header = 'payable amount'
+const HEADER_TITLE = 'payable amount'
+let ORDER_ID = 8989
+
 function Header() {
   return (
     <Box
@@ -12,7 +14,7 @@ function Header() {
       p={'0px 12px 0px 0px'}
     >
       <Box>
-        <Typography fontSize={'25px'} p={'12px'} ml={'10px'}>{capitalizeLetter(header)}</Typography>
+        <Typography fontSize={'25px'} p={'12px'} ml={'10px'}>{capitalizeLetter(HEADER_TITLE)}</Typography>
       </Box>
       <Box>
         <Typography
@@ -22,7 +24,7 @@ function Header() {
           ml={'10px'}
         >
           {/**Truyền id order */}
-    8797
+  {ORDER_ID}
         </Typography>
       </Box>
     </Box>

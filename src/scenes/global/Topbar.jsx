@@ -7,7 +7,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import Profile from '~/components/Profile'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import { displayCalendar } from '~/utils/calendar'
-import { useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 
 function Topbar() {
   const theme = useTheme()
@@ -48,12 +48,13 @@ function Topbar() {
       </Box>
 
       {/*ICONS */}
-      <Box display={'flex'}>
-        <Box 
-          display={'flex'} alignItems={'center'}
+      <Box display={'flex'} >
+        <Box
+          display={'flex'}
+          alignItems={'center'}
         >
           <CalendarTodayIcon/>
-          <Typography fontSize={'15px'} mr={'1.5rem'} ml={'0.25rem'}>{currentTime}</Typography>
+          <Typography fontSize={'15px'} fontWeight={'600'} mr={'1.5rem'} ml={'0.25rem'}>{currentTime}</Typography>
         </Box>
         <IconButton>
           <NotificationsOutlinedIcon/>
