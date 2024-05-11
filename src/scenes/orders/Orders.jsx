@@ -30,7 +30,6 @@ function Orders() {
       </Box>
       <OrderList/>
     </Box>
-   
   )
 }
 
