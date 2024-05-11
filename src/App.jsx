@@ -8,6 +8,7 @@ import Sidebar from './scenes/global/Sidebar'
 import { useState } from 'react'
 import Menu from './scenes/menu/Menu'
 import Payment from '~/scenes/payment/Payment'
+import Orders from './scenes/orders/Orders'
 
 function App() {
   const [theme, colorMode] = useMode()
@@ -28,6 +29,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/menu" element={<Menu />} />
               <Route path="/payment" element={<Payment />} />
+              <Route path="/orders" element={<Orders />} />
             </Routes>
           </main>
         </div>

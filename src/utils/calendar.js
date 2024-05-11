@@ -3,16 +3,16 @@ export function displayCalendar(timeString) {
   // Adjust for Vietnam timezone (UTC+7)
   currentDate.setUTCHours(currentDate.getUTCHours() + 7)
   var hours = currentDate.getUTCHours()
-  var minutes = currentDate.getMinutes()
-  var date = currentDate.getDate()
-  var monthIndex = currentDate.getMonth() // Get the month index (0-11)
+  var minutes = currentDate.getUTCMinutes()
+  var date = currentDate.getUTCDate()
+  var monthIndex = currentDate.getUTCMonth() // Get the month index (0-11)
   var year = currentDate.getFullYear() // Get the current year
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   var month = months[monthIndex]
   var ampm = hours >= 12 ? 'PM' : 'AM' // Determine AM or PM
-  // hours = hours % 12 // Convert to 12-hour format
-  // hours = hours ? hours : 12 // Handle midnight
-  hours = hours < 10 ? '0' + hours : hours && hours ? hours : 12 && hours % 12
+  hours = hours % 12 // Convert to 12-hour format
+  hours = hours ? hours : 12 // Handle midnight
+  hours = hours < 10 ? '0' + hours : hours
   minutes = minutes < 10 ? '0' + minutes : minutes
   var dateSuffix = getDateSuffix(date) // Get the ordinal suffix for the date
   var dateString = date + dateSuffix

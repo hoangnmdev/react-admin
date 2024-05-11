@@ -138,7 +138,7 @@ const Sidebar= () => {
 
             <Item
               title="Orders"
-              to="/team"
+              to="/orders"
               icon={<BorderAllIcon sx={{ fontSize: '30px' }}/>}
               selected={selected}
               setSelected={setSelected}
