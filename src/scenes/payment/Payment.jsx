@@ -1,8 +1,8 @@
 /* eslint-disable indent */
 import { Box, useTheme } from '@mui/material'
 // import { tokens } from '~/theme'
-import TableList from './tablelist/TableList'
-import OrderStatus from './orderstatus/OrderStatus'
+import TableList from './paymentlist/TableList'
+import OrderStatus from './paymentstatus/OrderStatus'
 const Dashboard = () => {
   // const theme = useTheme()
   // const colors = tokens(theme.palette.mode)
