@@ -1,5 +1,8 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { ResponsiveBar } from '@nivo/bar'
+import { capitalizeLetter } from '~/utils/formatter'
+
+const BAR_CHART_TITLE = 'bar chart'
 
 function BarChart() {
   const data =
@@ -112,9 +115,27 @@ function BarChart() {
  ]
 
   return (
-    <Box width={'100%'} height={'600px'}
-      borderTop= '2px solid rgba(0, 0, 0, 0.1)'
+    <Box width={'100%'} height={'550px'}
     >
+      <Box
+        borderTop= '2px solid rgba(0, 0, 0, 0.1)'
+        borderBottom= '2px solid rgba(0, 0, 0, 0.1)'
+        bgcolor={'white'}
+        height={'60px'}
+        display={'flex'}
+        justifyContent={'space-between'}
+      >
+        <Box>
+          <Typography
+            fontSize={'25px'}
+            fontWeight={'600'}
+            p={'12px'}
+            ml={'10px'}
+          >
+            {capitalizeLetter(BAR_CHART_TITLE)}
+          </Typography>
+        </Box>
+      </Box>
       <ResponsiveBar
         data={data}
         keys={[
