@@ -10,6 +10,7 @@ import Menu from './scenes/menu/Menu'
 import Payment from '~/scenes/payment/Payment'
 import Orders from './scenes/orders/Orders'
 import BarChart from './scenes/barchart/BarChart'
+import LineChart from './scenes/linechart/LineChart'
 
 function App() {
   const [theme, colorMode] = useMode()
@@ -32,6 +33,7 @@ function App() {
               <Route path="/payment" element={<Payment />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/bar" element={<BarChart />} />
+              <Route path="/line" element={<LineChart />} />
             </Routes>
           </main>
         </div>
