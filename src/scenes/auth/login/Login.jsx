@@ -9,9 +9,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { GradientCircleOne, GradientCircleTwo, GradientCircleThree, GradientCircleFour } from '~/utils/animation'
+import AnimationBackground from './AnimationBackground'
+import { useNavigate } from 'react-router-dom'
 
 const defaultTheme = createTheme()
+
 
 export default function Login() {
   const handleSubmit = (event) => {
@@ -22,7 +24,11 @@ export default function Login() {
       password: data.get('password')
     })
   }
-
+  // Define handleClick function
+  const navigate = useNavigate()
+  const handleClick = () => {
+    navigate('/dashboard')
+  }
   return (
     <Box
       height={'100vh'}
@@ -30,22 +36,7 @@ export default function Login() {
       display={'flex'}
       alignItems={'center'}
     >
-      <Box
-        m={'0rem 0 10rem 0rem'}>
-        <GradientCircleThree />
-      </Box>
-      <Box
-        m={'0 0 25rem 0rem'}>
-        <GradientCircleOne />
-      </Box>
-      <Box
-        m={'25rem 0rem 0rem 0rem'}>
-        <GradientCircleTwo />
-      </Box>
-      <Box
-        m={'10rem 0rem 0rem 0rem'}>
-        <GradientCircleFour />
-      </Box>
+      <AnimationBackground/>
       <Box
         width={'350px'}
         height={'480px'}
@@ -92,7 +83,7 @@ export default function Login() {
                   autoComplete="current-password"
                 />
 
-                <Button
+                <Button onClick={handleClick}
                   type="submit"
                   width= '50px'
                   boxShadow={'0 4px 20px rgba(0, 0, 0, 0.2)'}
