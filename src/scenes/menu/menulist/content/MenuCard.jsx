@@ -15,7 +15,13 @@ function MenuCard() {
         borderRadius:'20px',
         '&.MuiPaper-root':{
           boxShadow: 'none'
+        },
+        '&:hover': {
+          '&.MuiPaper-root':{
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
+          }
         }
+
       }}>
       <CardActionArea>
         <CardMedia
