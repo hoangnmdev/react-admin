@@ -1,6 +1,5 @@
 import { Box, useTheme, Typography } from '@mui/material'
 import { tokens } from '~/theme'
-import Floor from './floor/Floor'
 import { capitalizeLetter } from '~/utils/formatter'
 
 const TABLE_LIST_TITLE = 'table list'
@@ -26,9 +25,6 @@ function Header({ handleFloorSelect }) {
           {capitalizeLetter(TABLE_LIST_TITLE)}
         </Typography>
       </Box>
-      {/**Floor button */}
-      {/* Pass the handleFloorSelect function as a prop */}
-      <Floor onFloorSelect={handleFloorSelect}/>
     </Box>
   )
 }
