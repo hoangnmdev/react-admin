@@ -11,10 +11,6 @@ export const mockData = {
     { 'slNo':9, 'total':'81.35', 'time':'2024-05-06T14:49:57.069Z', 'tableId':4, 'orderStatusId':1 },
     { 'slNo':10, 'total':'54.68', 'time':'2024-05-07T17:15:06.918Z', 'tableId':1, 'orderStatusId':1 }
   ],
-  floor: [
-    { 'floorId':1, 'floorNumber':1 },
-    { 'floorId':2, 'floorNumber':2 }
-  ],
   menu: [
     { 'menuId':1, 'menuCategory':'starter', 'itemName':'Fresh Salad', 'price':'19.89' },
     { 'menuId':2, 'menuCategory':'main courses', 'itemName':'Spicy Burrito', 'price':'18.80' },
@@ -34,15 +30,15 @@ export const mockData = {
     { 'menuId':16, 'menuCategory':'drinks', 'itemName':'Delicious Pizza', 'price':'14.65' }
   ],
   table: [
-    { 'tableId':1, 'table_name':'Table 1', 'numberOfGuest':3, 'orderId':null, 'floorId': 1 },
-    { 'tableId':2, 'table_name':'Table 2', 'numberOfGuest':1, 'orderId':1, 'floorId': 1 },
-    { 'tableId':3, 'table_name':'Table 3', 'numberOfGuest':4, 'orderId':2, 'floorId': 1 },
-    { 'tableId':4, 'table_name':'Table 4', 'numberOfGuest':7, 'orderId':3, 'floorId': 1 },
-    { 'tableId':5, 'table_name':'Table 5', 'numberOfGuest':3, 'orderId':4, 'floorId': 2 },
-    { 'tableId':6, 'table_name':'Table 6', 'numberOfGuest':3, 'orderId':4, 'floorId': 2 },
-    { 'tableId':7, 'table_name':'Table 7', 'numberOfGuest':6, 'orderId':null, 'floorId': 2 },
-    { 'tableId':8, 'table_name':'Table 8', 'numberOfGuest':1, 'orderId':4, 'floorId': 2 },
-    { 'tableId':9, 'table_name':'Table 9', 'numberOfGuest':5, 'orderId':1, 'floorId': 2 },
-    { 'tableId':10, 'table_name':'Table 10', 'numberOfGuest':4, 'orderId':8, 'floorId': 2 }
+    { 'tableId':1, 'table_name':'Table 1', 'numberOfGuest':null, 'orderId':null },
+    { 'tableId':2, 'table_name':'Table 2', 'numberOfGuest':null, 'orderId':1 },
+    { 'tableId':3, 'table_name':'Table 3', 'numberOfGuest':null, 'orderId':2 },
+    { 'tableId':4, 'table_name':'Table 4', 'numberOfGuest':null, 'orderId':3 },
+    { 'tableId':5, 'table_name':'Table 5', 'numberOfGuest':null, 'orderId':4 },
+    { 'tableId':6, 'table_name':'Table 6', 'numberOfGuest':null, 'orderId':4 },
+    { 'tableId':7, 'table_name':'Table 7', 'numberOfGuest':null, 'orderId':null },
+    { 'tableId':8, 'table_name':'Table 8', 'numberOfGuest':null, 'orderId':4 },
+    { 'tableId':9, 'table_name':'Table 9', 'numberOfGuest':null, 'orderId':1 },
+    { 'tableId':10, 'table_name':'Table 10', 'numberOfGuest':null, 'orderId':8 }
   ]
 }

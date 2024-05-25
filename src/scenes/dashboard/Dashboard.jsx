@@ -1,21 +1,19 @@
-/* eslint-disable indent */
-import { Box, useTheme } from '@mui/material'
-// import { tokens } from '~/theme'
+import { Box } from '@mui/material'
 import TableList from './tablelist/TableList'
 import OrderStatus from './orderstatus/OrderStatus'
+import { useState } from 'react'
 
 const Dashboard = () => {
-  // const theme = useTheme()
-  // const colors = tokens(theme.palette.mode)
+  const [selectedTable, setSelectedTable] = useState(null) // State to store selected table details
 
   return (
     <Box
-    height={'calc(100vh - 70px)'}
-    display={'flex'}
-    borderTop= '2px solid rgba(0, 0, 0, 0.1)'
+      height={'calc(100vh - 70px)'}
+      display={'flex'}
+      borderTop='2px solid rgba(0, 0, 0, 0.1)'
     >
-     <TableList/>
-     <OrderStatus/>
+      <TableList setSelectedTable={setSelectedTable} selectedTable={selectedTable} />
+      <OrderStatus selectedTable={selectedTable} />
     </Box>
   )
 }

@@ -1,15 +1,23 @@
 import { Box, Grid } from '@mui/material'
 import { experimentalStyled as styled } from '@mui/material/styles'
 import Paper from '@mui/material/Paper'
+import { mockData } from '~/apis/mock_data'
 
-function Content({ tableList }) {
+function Content({ tableList, setSelectedTable }) {
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#ffff',
     ...theme.typography.body2,
     padding: theme.spacing(2),
+    color: theme.palette.text.secondary,
     textAlign: 'center',
-    color: theme.palette.text.secondary
+    fontWeight: '600',
+    fontSize: '20px',
+    cursor: 'pointer' // Add cursor pointer to indicate clickable item
   }))
+
+  const handleTableClick = (table) => {
+    const selected = mockData.table.find(t => t.table_name === table)
+    setSelectedTable(selected)
+  }
 
   return (
     <Box
@@ -21,13 +29,17 @@ function Content({ tableList }) {
           {/* Map through the tableList array and render each table */}
           {tableList.map((table, index) => (
             <Grid item xs={2} sm={4} md={4} key={index}>
-              <Item sx={{ height:'150px' }}>{table}</Item>
+              <Item
+                sx={{ height: '150px' }}
+                onClick={() => handleTableClick(table)}
+              >
+                {table}
+              </Item>
             </Grid>
           ))}
         </Grid>
       </Box>
     </Box>
-
   )
 }
 
