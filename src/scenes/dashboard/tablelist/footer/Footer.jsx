@@ -1,13 +1,29 @@
-import { Box, Button } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import TableBarIcon from '@mui/icons-material/TableBar'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
-import Typography from '@mui/material/Typography'
+import { useState } from 'react'
+import SnackBarAlert from './SnackBarAlert'
 import { capitalizeLetter } from '~/utils/formatter'
+import { useNavigate } from 'react-router-dom'
 
 const GUEST_TITLE = 'guest:'
 const TABLE_TITLE = 'table:'
 
 function Footer({ selectedTable }) {
+  const [openSnackBar, setOpenSnackBar] = useState(false)
+  const navigate = useNavigate()
+  const handleButtonClick = () => {
+    if (!selectedTable) {
+      setOpenSnackBar(true)
+    } else {
+      navigate('/menu')
+    }
+  }
+
+  const handleSnackBarClose = () => {
+    setOpenSnackBar(false)
+  }
+
   return (
     <Box
       bgcolor={'white'}
@@ -65,7 +81,10 @@ function Footer({ selectedTable }) {
               width: '200px',
               height: '50px'
             }
-          }} variant="contained">
+          }}
+          variant="contained"
+          onClick={handleButtonClick}
+        >
           <Typography sx={{
             fontSize: '14px',
             '&.MuiTypography-root.MuiTypography-body1': { textTransform: 'none' }
@@ -75,6 +94,8 @@ function Footer({ selectedTable }) {
           </Typography>
         </Button>
       </Box>
+      {/* Snackbar for notification */}
+      <SnackBarAlert open={openSnackBar} onClose={handleSnackBarClose} />
     </Box>
   )
 }
