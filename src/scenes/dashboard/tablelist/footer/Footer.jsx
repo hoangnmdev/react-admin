@@ -74,12 +74,30 @@ function Footer({ selectedTable }) {
         {/** Select and Continue Button */}
         <Button
           sx={{
-            mr: '10px',
             '&.MuiButton-containedPrimary': {
-              bgcolor: '#4F6F52',
+              bgcolor: '#4F6F52'
+            },
+            boxShadow: 'none',
+            borderRadius: '15px',
+            cursor: 'pointer',
+            fontSize: '16px',
+            padding: '16px 24px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            transition: 'all 300ms cubic-bezier(.23, 1, 0.32, 1)',
+            userSelect: 'none',
+            width: '100%',
+            willChange: 'transform',
+            '&:disabled': {
+              pointerEvents: 'none'
+            },
+            '&:hover': {
+              boxShadow: 'rgba(0, 0, 0, 0.25) 0 8px 15px',
+              transform: 'translateY(-2px)'
+            },
+            '&:active': {
               boxShadow: 'none',
-              width: '200px',
-              height: '50px'
+              transform: 'translateY(0)'
             }
           }}
           variant="contained"

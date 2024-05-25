@@ -53,7 +53,16 @@ function Price() {
               boxShadow: 'none',
               width: '150px',
               height: '50px',
-              borderRadius: '10px'
+              borderRadius: '10px',
+              willChange: 'transform',
+              '&:hover':{
+                boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                transform: 'translateY(-2px)',
+                '&:active': {
+                  boxShadow: 'none',
+                  transform: 'translateY(0)'
+                }
+              }
             }
           }} variant="contained">
           <Typography sx={{
@@ -73,7 +82,16 @@ function Price() {
               boxShadow: 'none',
               width: '150px',
               height: '50px',
-              borderRadius: '10px'
+              borderRadius: '10px',
+              willChange: 'transform',
+              '&:hover':{
+                boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                transform: 'translateY(-2px)',
+                '&:active': {
+                  boxShadow: 'none',
+                  transform: 'translateY(0)'
+                }
+              }
             }
           }} variant="contained">
           <Typography sx={{

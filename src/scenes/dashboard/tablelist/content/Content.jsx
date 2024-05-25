@@ -11,7 +11,17 @@ function Content({ tableList, setSelectedTable }) {
     textAlign: 'center',
     fontWeight: '600',
     fontSize: '20px',
-    cursor: 'pointer' // Add cursor pointer to indicate clickable item
+    cursor: 'pointer',
+    willChange: 'transform',
+    '&:hover': {
+      boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+      transform: 'translateY(-2px)',
+      backgroundColor: '#F1F1F1'
+    },
+    '&:active': {
+      boxShadow: 'none',
+      transform: 'translateY(0)'
+    }
   }))
 
   const handleTableClick = (table) => {
