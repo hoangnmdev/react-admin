@@ -1,10 +1,10 @@
 import { Box, useTheme, Typography } from '@mui/material'
-import { tokens } from '~/theme'
+// import { tokens } from '~/theme'
 import { capitalizeLetter } from '~/utils/formatter'
 
 const TABLE_LIST_TITLE = 'table list'
-function Header({ handleFloorSelect }) {
-  const theme = useTheme()
+function Header() {
+  // const theme = useTheme()
   // const colors = tokens(theme.palette.mode)
 
   return (

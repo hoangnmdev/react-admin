@@ -2,8 +2,12 @@ import { Box, Button } from '@mui/material'
 import TableBarIcon from '@mui/icons-material/TableBar'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
 import Typography from '@mui/material/Typography'
+import { capitalizeLetter } from '~/utils/formatter'
 
-function Footer() {
+const GUEST_TITLE = 'guest:'
+const TABLE_TITLE = 'table:'
+
+function Footer({ selectedTable }) {
   return (
     <Box
       bgcolor={'white'}
@@ -16,25 +20,45 @@ function Footer() {
       <Box
         display={'flex'}
         p={'30px 0px 0px 15px'}
+        width={'220px'}
+        height={'40px'}
       >
-        <Box display={'flex'} mr={'50px'}>
-          <TableBarIcon
-            sx={{
-              fontSize: '20px',
-              mr: '10px'
-            }}/>
-          <Typography fontSize={'15px'} color="initial">TABLE:</Typography>
+        <Box display={'flex'} alignItems={'center'} mr={'40px'}>
+          <TableBarIcon sx={{ fontSize: '20px', mr: '10px' }} />
+          <Typography fontSize={'15px'} color="initial">
+            {capitalizeLetter(TABLE_TITLE)}
+          </Typography>
+          <Typography
+            fontWeight={'600'}
+            fontSize={'22px'}
+            color={'#F0B86E'}
+            ml={'5px'}>
+            {selectedTable ? `${selectedTable.tableId}` : ''}
+          </Typography>
         </Box>
-        <Box display={'flex'}>
-          <SupervisorAccountIcon sx={{ fontSize: '20px', mr: '10px' }}/>
-          <Typography fontSize={'15px'} color="initial">GUEST:</Typography>
+        <Box display={'flex'} alignItems={'center'}>
+          <SupervisorAccountIcon sx={{ fontSize: '20px', mr: '10px' }} />
+          <Typography
+            fontSize={'15px'}
+            color="initial"
+          >
+            {capitalizeLetter(GUEST_TITLE)}
+          </Typography>
+          <Typography
+            fontWeight={'600'}
+            fontSize={'22px'}
+            color={'#F0B86E'}
+            ml={'5px'}
+          >
+            {selectedTable ? selectedTable.numberOfGuest : ''}
+          </Typography>
         </Box>
       </Box>
       <Box sx={{ p: '15px 15px 0px 0px' }}>
         {/** Select and Continue Button */}
         <Button
           sx={{
-            mr:'10px',
+            mr: '10px',
             '&.MuiButton-containedPrimary': {
               bgcolor: '#4F6F52',
               boxShadow: 'none',
@@ -47,7 +71,7 @@ function Footer() {
             '&.MuiTypography-root.MuiTypography-body1': { textTransform: 'none' }
           }}
           color="white">
-        SELECT AND CONTINUE
+            SELECT AND CONTINUE
           </Typography>
         </Button>
       </Box>
