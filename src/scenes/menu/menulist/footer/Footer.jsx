@@ -26,10 +26,17 @@ function Footer() {
               width: '150px',
               height: '50px',
               borderRadius: '10px',
+              willChange: 'transform',
               '&:hover':{
                 bgcolor: '#4F6F52',
+                boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                transform: 'translateY(-2px)',
                 '& .MuiTypography-root': {
                   color: 'white'
+                },
+                '&:active': {
+                  boxShadow: 'none',
+                  transform: 'translateY(0)'
                 }
               }
             }
@@ -52,10 +59,17 @@ function Footer() {
               width: '180px',
               height: '50px',
               borderRadius: '10px',
+              willChange: 'transform',
               '&:hover':{
                 bgcolor: '#4F6F52',
+                boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                transform: 'translateY(-2px)',
                 '& .MuiTypography-root': {
                   color: 'white'
+                },
+                '&:active': {
+                  boxShadow: 'none',
+                  transform: 'translateY(0)'
                 }
               }
             }
@@ -78,10 +92,17 @@ function Footer() {
               width: '150px',
               height: '50px',
               borderRadius: '10px',
+              willChange: 'transform',
               '&:hover':{
                 bgcolor: '#4F6F52',
+                boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                transform: 'translateY(-2px)',
                 '& .MuiTypography-root': {
                   color: 'white'
+                },
+                '&:active': {
+                  boxShadow: 'none',
+                  transform: 'translateY(0)'
                 }
               }
             }
@@ -105,10 +126,17 @@ function Footer() {
               width: '160px',
               height: '50px',
               borderRadius: '10px',
+              willChange: 'transform',
               '&:hover':{
                 bgcolor: '#4F6F52',
+                boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                transform: 'translateY(-2px)',
                 '& .MuiTypography-root': {
                   color: 'white'
+                },
+                '&:active': {
+                  boxShadow: 'none',
+                  transform: 'translateY(0)'
                 }
               }
             }
