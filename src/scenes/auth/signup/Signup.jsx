@@ -14,20 +14,20 @@ import { useNavigate } from 'react-router-dom'
 
 const defaultTheme = createTheme()
 
-
-export default function Login() {
+function Signup() {
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     console.log({
       username: data.get('username'),
-      password: data.get('password')
+      password: data.get('password'),
+      email: data.get('email')
     })
   }
   // Define handleClick function
   const navigate = useNavigate()
   const handleClick = () => {
-    navigate('/dashboard')
+    navigate('/login')
   }
   return (
     <Box
@@ -59,9 +59,19 @@ export default function Login() {
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
-            Sign in
+            Sign up
               </Typography>
               <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
                 <TextField
                   margin="normal"
                   required
@@ -98,11 +108,6 @@ export default function Login() {
                   Forgot password?
                     </Link>
                   </Grid>
-                  <Grid item>
-                    <Link href="#" variant="body2">
-                      {'Don\'t have an account? Sign Up'}
-                    </Link>
-                  </Grid>
                 </Grid>
               </Box>
             </Box>
@@ -112,3 +117,5 @@ export default function Login() {
     </Box>
   )
 }
+
+export default Signup

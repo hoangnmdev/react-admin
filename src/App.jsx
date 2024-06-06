@@ -12,6 +12,7 @@ import Orders from './scenes/orders/Orders'
 import BarChart from './scenes/barchart/BarChart'
 import LineChart from './scenes/linechart/LineChart'
 import Login from './scenes/auth/login/Login'
+import Signup from './scenes/auth/signup/Signup'
 
 function App() {
   const [theme, colorMode] = useMode()
@@ -20,8 +21,9 @@ function App() {
 
   // Hide sidebar and topbar on the login page
   const isLoginPage = location.pathname === '/login'
-  const shouldDisplaySidebar = !isLoginPage && isSideBar
-  const shouldDisplayTopbar = !isLoginPage
+  const isSignupPage = location.pathname === '/signup'
+  const shouldDisplaySidebar = !isLoginPage && !isSignupPage && isSideBar
+  const shouldDisplayTopbar = !isLoginPage && !isSignupPage
 
   return (
     // Step 3: Provide the context
@@ -44,6 +46,7 @@ function App() {
               <Route path="/bar" element={<BarChart />} />
               <Route path="/line" element={<LineChart />} />
               <Route path="/login" element={<Login />} />
+              <Route path="signup" element={<Signup/>}/>
             </Routes>
           </main>
         </div>
