@@ -30,7 +30,7 @@ function MenuCard() {
         <CardMedia
           component="img"
           height="150"
-          image="https://thumbs.dreamstime.com/z/pumpkin-curry-pumkin-cuta-seeds-46491356.jpg?ct=jpeg"
+          image="https://pho10lyquocsu.com.vn/watermark/product/540x540x1/upload/product/802147df1f6649958479f9bb6bfd11e21586089124731697124-5716.jpeg"
           alt="cuisine"
         />
       </CardActionArea>
