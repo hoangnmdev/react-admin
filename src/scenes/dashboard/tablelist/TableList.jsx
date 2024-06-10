@@ -1,22 +1,26 @@
+/* eslint-disable no-console */
 import { Box } from '@mui/material'
 import Header from './header/Header'
 import Content from './content/Content'
 import Footer from './footer/Footer'
-import { useState } from 'react'
-import { mockData } from '~/apis/mock_data'
+import { useState, useEffect } from 'react'
+import { getTableList } from '~/apis/tablelist'
 
 function TableList({ setSelectedTable, selectedTable }) {
-  const [tableList, setTableList] = useState(generateTableList('Table'))
+  const [tableList, setTableList] = useState([])
 
-  function generateTableList(table) {
-    if (table === 'Table') {
-      return mockData.table.map((_, index) => {
-        return `${table} ${index + 1}`
-      })
-    } else {
-      return [] // Default to empty array if floor is not recognized
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getTableList()
+        setTableList(data)
+      } catch (error) {
+        console.error('There was an error fetching the tables', error)
+      }
     }
-  }
+
+    fetchData()
+  }, [])
 
   return (
     <Box

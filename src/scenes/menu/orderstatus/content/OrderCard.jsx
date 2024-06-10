@@ -113,7 +113,7 @@ export default function MediaControlCard() {
                   m: ' 4px 0 4px 12px',
                   borderRadius:'8px'
                 }}
-                image="https://thumbs.dreamstime.com/z/white-chocolate-chip-cookies-keyboard-computer-background-copy-space-website-internet-homepage-policy-accpeted-blocks-252209597.jpg?ct=jpeg"
+                image="https://pho10lyquocsu.com.vn/watermark/product/540x540x1/upload/product/febddb544adeb480edcf-3155.jpg"
                 alt="Live from space album cover"
               />
               <Box pl ={'18px'}>
