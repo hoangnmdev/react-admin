@@ -11,9 +11,11 @@ import Logout from '@mui/icons-material/Logout'
 import PersonAdd from '@mui/icons-material/PersonAdd'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import { useNavigate } from 'react-router-dom'
+import AlertDialog from './AlerDialog'
 
 function Profile() {
   const [anchorEl, setAnchorEl] = React.useState(null)
+  const [dialogOpen, setDialogOpen] = React.useState(false)
   const open = Boolean(anchorEl)
   const navigate = useNavigate()
 
@@ -25,6 +27,13 @@ function Profile() {
   }
   const handleOnClick = () => {
     navigate('/login')
+  }
+  const handleDialogOpen = () => {
+    setDialogOpen(true)
+    handleClose()
+  }
+  const handleDialogClose = () => {
+    setDialogOpen(false)
   }
   return (
     <Box>
@@ -62,13 +71,14 @@ function Profile() {
           </ListItemIcon>
           Add another account
         </MenuItem>
-        <MenuItem >
+        <MenuItem onClick={handleDialogOpen}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
           Logout
         </MenuItem>
       </Menu>
+      <AlertDialog open={dialogOpen} handleClose={handleDialogClose}/>
     </Box>
   )
 }
