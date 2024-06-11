@@ -1,6 +1,6 @@
 import { Box, useTheme, Typography } from '@mui/material'
 
-function Header() {
+function Header({ selectedTable }) {
   return (
     <Box
       bgcolor={'white'}
@@ -26,8 +26,7 @@ function Header() {
           p={'12px'}
           ml={'10px'}
         >
-          {/**Truyền id order */}
-    8797
+          {selectedTable ? `${selectedTable.orderId}` : ''}
         </Typography>
       </Box>
     </Box>

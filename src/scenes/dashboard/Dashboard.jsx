@@ -1,10 +1,8 @@
 import { Box } from '@mui/material'
 import TableList from './tablelist/TableList'
 import OrderStatus from './orderstatus/OrderStatus'
-import { useState } from 'react'
 
-const Dashboard = () => {
-  const [selectedTable, setSelectedTable] = useState(null) // State to store selected table details
+const Dashboard = ({ selectedTable, setSelectedTable }) => {
 
   return (
     <Box

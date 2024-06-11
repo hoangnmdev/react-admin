@@ -11,7 +11,7 @@ function OrderStatus({ selectedTable }) {
       height={'calc(100vh - 70px)'}
     >
       {/* Header */}
-      <Header />
+      <Header selectedTable={selectedTable}/>
       {/* Title */}
       <Title selectedTable={selectedTable} />
       {/* Content */}

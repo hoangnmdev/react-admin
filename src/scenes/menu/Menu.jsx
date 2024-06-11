@@ -2,7 +2,7 @@ import MenuList from './menulist/MenuList'
 import OrderStatus from './orderstatus/OrderStatus'
 import { Box } from '@mui/material'
 
-function Menu() {
+function Menu({ selectedTable }) {
   return (
     <Box
       height={'calc(100vh - 70px)'}
@@ -10,7 +10,7 @@ function Menu() {
       borderTop= '2px solid rgba(0, 0, 0, 0.1)'
     >
       <MenuList/>
-      <OrderStatus/>
+      <OrderStatus selectedTable={selectedTable}/>
     </Box>
   )
 }
