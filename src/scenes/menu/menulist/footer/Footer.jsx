@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material'
 import Typography from '@mui/material/Typography'
 
-function Footer({ fetchPhoBoMenu, fetchPhoGaMenu }) {
+function Footer({ fetchPhoBoMenu, fetchPhoGaMenu, fetchComNieuMenu }) {
   return (
     <Box
       bgcolor={'white'}
@@ -87,6 +87,7 @@ function Footer({ fetchPhoBoMenu, fetchPhoGaMenu }) {
         </Button>
         {/*Drinks Menu Button */}
         <Button
+          onClick={fetchComNieuMenu}
           sx={{
             '&.MuiButton-containedPrimary': {
               bgcolor: '#E3E1D9',
