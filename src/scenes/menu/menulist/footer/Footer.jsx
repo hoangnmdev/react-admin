@@ -47,7 +47,7 @@ function Footer() {
             '&.MuiTypography-root.MuiTypography-body1': { textTransform: 'none' }
           }}
           color="white">
-        STARTER
+        PHỞ BÒ
           </Typography>
         </Button>
         {/**Main Course Menu Button */}
@@ -80,7 +80,7 @@ function Footer() {
             '&.MuiTypography-root.MuiTypography-body1': { textTransform: 'none' }
           }}
           color="white">
-        MAIN COURSE
+        PHỞ GÀ
           </Typography>
         </Button>
         {/*Drinks Menu Button */}
@@ -113,7 +113,7 @@ function Footer() {
             '&.MuiTypography-root.MuiTypography-body1': { textTransform: 'none' }
           }}
           color="white">
-        DRINKS
+       CƠM NIÊU
           </Typography>
         </Button>
         {/**Desserts Course Menu Button */}
@@ -147,7 +147,7 @@ function Footer() {
             '&.MuiTypography-root.MuiTypography-body1': { textTransform: 'none' }
           }}
           color="white">
-        DESSERTS
+        MÓN THÊM
           </Typography>
         </Button>
       </Box>
