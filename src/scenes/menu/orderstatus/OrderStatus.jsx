@@ -1,10 +1,9 @@
 import { Box } from '@mui/material'
-
-import Header from './header/Header'
-import Title from './header/Title'
+import Header from '~/scenes/dashboard/orderstatus/Header'
+import Title from '~/scenes/dashboard/orderstatus/Title'
 import Content from './content/Content'
 
-function OrderStatus() {
+function OrderStatus({ selectedTable }) {
   return (
     <Box
       width={'calc(100% - 1000px)'}
@@ -12,9 +11,9 @@ function OrderStatus() {
       height={'calc(100vh - 70px)'}
     >
       {/*Header*/}
-      <Header/>
+      <Header selectedTable={selectedTable}/>
       {/*Title*/}
-      <Title/>
+      <Title selectedTable={selectedTable}/>
       {/*Content*/}
       <Content/>
     </Box>
