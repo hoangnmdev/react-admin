@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material'
 import Typography from '@mui/material/Typography'
 
-function Footer() {
+function Footer({ fetchPhoBoMenu, fetchPhoGaMenu }) {
   return (
     <Box
       bgcolor={'white'}
@@ -18,6 +18,7 @@ function Footer() {
         }}>
         {/**Starter Menu Button */}
         <Button
+          onClick={fetchPhoBoMenu} // Set menu to Phở Bò
           sx={{
             ml:'30px',
             '&.MuiButton-containedPrimary': {
@@ -52,6 +53,7 @@ function Footer() {
         </Button>
         {/**Main Course Menu Button */}
         <Button
+          onClick={fetchPhoGaMenu} // Set menu to Phở Gà
           sx={{
             '&.MuiButton-containedPrimary': {
               bgcolor: '#E3E1D9',
