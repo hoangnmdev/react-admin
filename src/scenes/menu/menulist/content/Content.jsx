@@ -1,24 +1,7 @@
-/* eslint-disable no-console */
-import { useState, useEffect } from 'react'
 import { Box, Grid } from '@mui/material'
 import MenuCard from './MenuCard'
-import { getMenuList } from '~/apis/menu' // Make sure the path is correct
 
-function Content() {
-  const [menuList, setMenuList] = useState([])
-
-  useEffect(() => {
-    const fetchMenu = async () => {
-      try {
-        const data = await getMenuList()
-        setMenuList(data)
-      } catch (error) {
-        console.error('Error fetching menu:', error)
-      }
-    }
-    fetchMenu()
-  }, [])
-
+function Content({ menuList }) {
   return (
     <Box height={'460px'} sx={{ overflowY: 'auto' }}>
       <Box sx={{ flexGrow: 1 }}>
