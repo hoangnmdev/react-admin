@@ -30,3 +30,18 @@ export const getPhoGaMenu = async () => {
     throw error
   }
 }
+
+
+export const getComNieuMenu = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/ComNieuMenu`)
+    const data = response.data.map((item) => ({
+      ...item,
+      itemImage: item.itemImage ? `data:image/png;base64,${item.itemImage}` : null
+    }))
+    return data
+  } catch (error) {
+    console.error('There was an error fetching the menu!', error)
+    throw error
+  }
+}

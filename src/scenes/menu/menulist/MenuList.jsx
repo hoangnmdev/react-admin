@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import Footer from './footer/Footer'
 import { getPhoBoMenu } from '~/apis/menu'
 import { getPhoGaMenu } from '~/apis/menu'
+import { getComNieuMenu } from '~/apis/menu'
 
 function MenuList() {
   const [menuList, setMenuList] = useState([])
@@ -12,7 +13,13 @@ function MenuList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = selectedMenu === 'PhoBo' ? await getPhoBoMenu() : await getPhoGaMenu()
+        const data = selectedMenu === 'PhoBo'
+          ? await getPhoBoMenu()
+          : selectedMenu === 'PhoGa'
+            ? await getPhoGaMenu()
+            : selectedMenu === 'ComNieu'
+              ? await getComNieuMenu()
+              : ''
         setMenuList(data)
       } catch (error) {
         console.log('There was an error fetching the menu', error)
@@ -32,6 +39,7 @@ function MenuList() {
       <Footer
         fetchPhoBoMenu={() => setSelectedMenu('PhoBo')}
         fetchPhoGaMenu={() => setSelectedMenu('PhoGa')}
+        fetchComNieuMenu={() => setSelectedMenu('ComNieu')}
       />
     </Box>
   )
