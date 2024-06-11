@@ -6,6 +6,7 @@ import Footer from './footer/Footer'
 import { getPhoBoMenu } from '~/apis/menu'
 import { getPhoGaMenu } from '~/apis/menu'
 import { getComNieuMenu } from '~/apis/menu'
+import { getMonThemMenu } from '~/apis/menu'
 
 function MenuList() {
   const [menuList, setMenuList] = useState([])
@@ -19,7 +20,9 @@ function MenuList() {
             ? await getPhoGaMenu()
             : selectedMenu === 'ComNieu'
               ? await getComNieuMenu()
-              : ''
+              : selectedMenu === 'MonThem'
+                ? await getMonThemMenu()
+                : ''
         setMenuList(data)
       } catch (error) {
         console.log('There was an error fetching the menu', error)
@@ -40,6 +43,7 @@ function MenuList() {
         fetchPhoBoMenu={() => setSelectedMenu('PhoBo')}
         fetchPhoGaMenu={() => setSelectedMenu('PhoGa')}
         fetchComNieuMenu={() => setSelectedMenu('ComNieu')}
+        fetchMonThemMenu={() => setSelectedMenu('MonThem')}
       />
     </Box>
   )

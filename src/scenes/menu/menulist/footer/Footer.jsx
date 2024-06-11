@@ -1,7 +1,7 @@
 import { Box, Button } from '@mui/material'
 import Typography from '@mui/material/Typography'
 
-function Footer({ fetchPhoBoMenu, fetchPhoGaMenu, fetchComNieuMenu }) {
+function Footer({ fetchPhoBoMenu, fetchPhoGaMenu, fetchComNieuMenu, fetchMonThemMenu }) {
   return (
     <Box
       bgcolor={'white'}
@@ -121,6 +121,7 @@ function Footer({ fetchPhoBoMenu, fetchPhoGaMenu, fetchComNieuMenu }) {
         </Button>
         {/**Desserts Course Menu Button */}
         <Button
+          onClick={fetchMonThemMenu}
           sx={{
             mr:'30px',
             '&.MuiButton-containedPrimary': {
