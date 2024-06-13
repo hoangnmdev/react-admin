@@ -11,7 +11,7 @@ import Logout from '@mui/icons-material/Logout'
 import PersonAdd from '@mui/icons-material/PersonAdd'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import { useNavigate } from 'react-router-dom'
-import AlertDialog from './Logout'
+import AlertDialog from './AlertDialog'
 
 function Profile() {
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -78,7 +78,9 @@ function Profile() {
           Logout
         </MenuItem>
       </Menu>
-      <AlertDialog open={dialogOpen} handleClose={handleDialogClose}/>
+      <AlertDialog open={dialogOpen} handleClose={handleDialogClose}
+        title={'Log out?'} contentText={'Do you want to log out?'}
+        cancelLabel={'Cancel'} confirmLabel={'Log out'} handleConfirm={handleOnClick} />
     </Box>
   )
 }
