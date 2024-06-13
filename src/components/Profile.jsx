@@ -30,7 +30,6 @@ function Profile() {
   }
   const handleDialogOpen = () => {
     setDialogOpen(true)
-    handleClose()
   }
   const handleDialogClose = () => {
     setDialogOpen(false)
