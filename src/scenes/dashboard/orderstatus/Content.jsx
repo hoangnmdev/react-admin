@@ -12,7 +12,7 @@ function Content() {
       <Box
       >
         <Box textAlign="center">
-          <FastfoodIcon sx={{ fontSize: '100px' }} />
+          <FastfoodIcon sx={{ fontSize: '100px', color: '#7AB2B2' }} />
         </Box>
         <Box textAlign="center" p={'40px 0px 0px 0px '} width={'150px'}>
           <Typography variant="h5" color="initial">NO PRODUCT IN THIS MOMENT ADDED</Typography>

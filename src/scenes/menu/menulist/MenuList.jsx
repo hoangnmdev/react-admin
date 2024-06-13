@@ -8,7 +8,7 @@ import { getPhoGaMenu } from '~/apis/menu'
 import { getComNieuMenu } from '~/apis/menu'
 import { getMonThemMenu } from '~/apis/menu'
 
-function MenuList() {
+function MenuList({ selectedItem, setSelectedItem }) {
   const [menuList, setMenuList] = useState([])
   const [selectedMenu, setSelectedMenu] = useState('PhoBo')
   useEffect(() => {
@@ -22,7 +22,7 @@ function MenuList() {
               ? await getComNieuMenu()
               : selectedMenu === 'MonThem'
                 ? await getMonThemMenu()
-                : ''
+                : []
         setMenuList(data)
       } catch (error) {
         console.log('There was an error fetching the menu', error)
@@ -37,7 +37,7 @@ function MenuList() {
       borderRight= '2px solid rgba(0, 0, 0, 0.1)'
     >
       {/*Content*/}
-      <Content menuList={menuList}/>
+      <Content menuList={menuList} selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
       {/*Footer*/}
       <Footer
         fetchPhoBoMenu={() => setSelectedMenu('PhoBo')}

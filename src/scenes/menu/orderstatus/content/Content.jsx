@@ -1,17 +1,16 @@
 import { Box } from '@mui/material'
-import MediaControlCard from './OrderCard'
+import OrderCard from './OrderCard'
 import Price from './Price'
 
-function Content() {
+function Content({ selectedItem, setSelectedItem }) {
   return (
     <Box sx={{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center'
     }}>
-      <MediaControlCard
-      />
-      <Price/>
+      <OrderCard selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
+      <Price />
     </Box>
   )
 }

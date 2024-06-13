@@ -11,7 +11,7 @@ import Logout from '@mui/icons-material/Logout'
 import PersonAdd from '@mui/icons-material/PersonAdd'
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined'
 import { useNavigate } from 'react-router-dom'
-import AlertDialog from './AlerDialog'
+import AlertDialog from './Logout'
 
 function Profile() {
   const [anchorEl, setAnchorEl] = React.useState(null)
