@@ -3,7 +3,7 @@ import CardMedia from '@mui/material/CardMedia'
 import { CardActionArea, CardActions, Typography, Box } from '@mui/material'
 import { capitalizeLetter } from '~/utils/formatter'
 
-function MenuCard({ itemName, price, itemImage }) {
+function MenuCard({ itemName, price, itemImage, onItemClick }) {
   return (
     <Card
       sx={{
@@ -22,6 +22,7 @@ function MenuCard({ itemName, price, itemImage }) {
           transform: 'translateY(0)'
         }
       }}
+      onClick={onItemClick} // Add onClick to handle item click
     >
       <CardActionArea>
         <CardMedia

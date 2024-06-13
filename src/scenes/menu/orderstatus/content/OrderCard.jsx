@@ -1,50 +1,27 @@
-import { useState } from 'react'
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
+import { Box, Card, Typography, Button, IconButton } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
+import FastfoodIcon from '@mui/icons-material/Fastfood'
 
-export default function MediaControlCard() {
-  const [data, setData] = useState([
-    {
-      itemName: 'Cheesy Chicken Pasta',
-      amount: '$100',
-      quantity: 2,
-      price: '70.000Đ'
-    },
-    {
-      itemName: 'Cheesy Chicken Pasta',
-      amount: '$200',
-      quantity: 4,
-      price: '$200.000'
-    },
-    {
-      itemName: 'Cheesy Chicken Pasta',
-      amount: '$75',
-      quantity: 3,
-      price: '$350'
-    },
-    {
-      itemName: 'Cheesy Chicken Pasta',
-      amount: '$200',
-      quantity: 1,
-      price: '$600'
-    }
-  ])
+export default function OrderCard({ selectedItem, setSelectedItem }) {
 
   const handleQuantityChange = (index, change) => {
-    const newData = [...data]
+    const newData = [...selectedItem]
     const newQuantity = newData[index].quantity + change
     newData[index].quantity = newQuantity < 1 ? 1 : newQuantity
-    setData(newData)
+    setSelectedItem(newData)
+  }
+
+  const handleDelete = (index) => {
+    const newData = [...selectedItem]
+    newData.splice(index, 1)
+    setSelectedItem(newData)
   }
 
   return (
     <Box justifyContent={'center'} justifyItems={'center'} display={'flex'} width={'420px'}>
-      <Box sx={{ overflowY: 'auto', overflowX: 'hidden' }}
+      <Box
+        sx={{ overflowY: 'auto', overflowX: 'hidden' }}
         justifyContent={'center'}
         justifyItems={'center'}
         display={'flex'}
@@ -54,97 +31,124 @@ export default function MediaControlCard() {
         border='3px dashed rgba(0, 0, 0, 0.1)'
         borderRadius={'10px'}
       >
-        <div style={{ display: 'block', width: '100%' }}>
-          {data.map((item, index) => (
-            <Card
-              key={index}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                height: '60px',
-                width: '100%',
-                bgcolor: '#F1F2EB',
-                '&.MuiPaper-root': {
-                  boxShadow: 'none'
-                },
-                borderRadius: '10px',
-                mb: '10px',
-                p: '10px'
-              }}
-            >
-              <Box display={'inline-block'}>
-                <Box display={'flex'} alignItems={'center'}>
-                  <Typography fontSize={'14px'} color="initial" fontWeight={'510'}>
-                    {item.itemName}
+        {selectedItem.length === 0 ? (
+          <Box
+            justifyContent={'center'}
+            alignItems={'center'}
+            display={'flex'}
+          >
+            <Box>
+              <Box textAlign="center">
+                <FastfoodIcon sx={{ fontSize: '100px', color: '#7AB2B2' }} />
+              </Box>
+              <Box textAlign="center" p={'20px 0px 0px 0px '} width={'150px'}>
+                <Typography variant="h5" color="initial">
+                  NO ITEM IN THIS MOMENT ADDED
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        ) : (
+          <div style={{ display: 'block', width: '100%' }}>
+            {selectedItem.map((item, index) => (
+              <Card
+                key={item.menuId}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '60px',
+                  width: '100%',
+                  bgcolor: '#F1F2EB',
+                  '&.MuiPaper-root': {
+                    boxShadow: 'none'
+                  },
+                  borderRadius: '10px',
+                  mb: '10px',
+                  p: '10px'
+                }}
+              >
+                <Box display={'inline-block'} marginRight={'auto'}>
+                  <Box display={'flex'} alignItems={'center'}>
+                    <Typography fontSize={'14px'} color="initial" fontWeight={'510'}>
+                      {item.itemName}
+                    </Typography>
+                    <IconButton size="small" sx={{ p: 0.5 }}>
+                      <OpenInNewIcon sx={{ fontSize: '15px' }} />
+                    </IconButton>
+                  </Box>
+                  <Typography fontSize={'12px'} color="initial" fontWeight={'600'}>
+                    Amount {item.price}
                   </Typography>
-                  <IconButton size="small" sx={{ p: 0.5 }}>
-                    <OpenInNewIcon sx={{ fontSize: '15px' }} />
+                </Box>
+                <Box marginLeft={'auto'}>
+                  <Box
+                    textAlign={'center'}
+                    sx={{ display: 'flex', alignItems: 'center', bgcolor: '#4F6F52', borderRadius: '5px' }}
+                  >
+                    <Button
+                      onClick={() => handleQuantityChange(index, -1)}
+                      variant="outlined"
+                      size="small"
+                      sx={{
+                        minWidth: '20px',
+                        borderRadius: '5px',
+                        borderStyle: 'none',
+                        '&:hover': {
+                          bgcolor: '#4F6F52',
+                          boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                          transform: 'translateY(-2px)',
+                          '& .MuiTypography-root': {
+                            color: 'white'
+                          },
+                          '&:active': {
+                            boxShadow: 'none',
+                            transform: 'translateY(0)'
+                          }
+                        }
+                      }}
+                    >
+                      <Typography color={'white'}>-</Typography>
+                    </Button>
+                    <Typography color={'white'} mx={2}>{item.quantity}</Typography>
+                    <Button
+                      onClick={() => handleQuantityChange(index, 1)}
+                      variant="outlined"
+                      size="small"
+                      sx={{
+                        minWidth: '20px',
+                        borderRadius: '5px',
+                        borderStyle: 'none',
+                        '&:hover': {
+                          bgcolor: '#4F6F52',
+                          boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                          transform: 'translateY(-2px)',
+                          '& .MuiTypography-root': {
+                            color: 'white'
+                          },
+                          '&:active': {
+                            boxShadow: 'none',
+                            transform: 'translateY(0)'
+                          }
+                        }
+                      }}
+                    >
+                      <Typography color={'white'}>+</Typography>
+                    </Button>
+                  </Box>
+                </Box>
+                <Box justifyContent={'space-between'} display={'flex'} alignItems={'center'}>
+                  <Typography variant='h6' fontWeight={'600'} sx={{ minWidth: '80px', textAlign: 'center' }}>
+                    {item.itemName === 'Quẩy Nhà Làm' || item.itemName === 'Phở Chiên Phồng' || item.itemName === 'Phở Cuốn'
+                      ? `${item.price}` : `${item.price}Đ`}
+                  </Typography>
+                  <IconButton color="error" onClick={() => handleDelete(index)}>
+                    <DeleteIcon />
                   </IconButton>
                 </Box>
-                <Typography fontSize={'12px'} color="initial" fontWeight={'600'}>
-                  Amount {item.amount}
-                </Typography>
-              </Box>
-              <Box textAlign={'center'} sx={{ display: 'flex', alignItems: 'center', bgcolor: '#4F6F52', borderRadius: '5px', marginLeft: 'auto' }}>
-                <Button
-                  onClick={() => handleQuantityChange(index, -1)}
-                  variant="outlined"
-                  size="small"
-                  sx={{
-                    minWidth: '20px',
-                    borderRadius: '5px',
-                    borderStyle: 'none',
-                    '&:hover':{
-                      bgcolor: '#4F6F52',
-                      boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
-                      transform: 'translateY(-2px)',
-                      '& .MuiTypography-root': {
-                        color: 'white'
-                      },
-                      '&:active': {
-                        boxShadow: 'none',
-                        transform: 'translateY(0)'
-                      }
-                    }
-                  }}>
-                  <Typography color={'white'}>-</Typography>
-                </Button>
-                <Typography color={'white'} mx={2}>{item.quantity}</Typography>
-                <Button
-                  onClick={() => handleQuantityChange(index, 1)}
-                  variant="outlined"
-                  size="small"
-                  sx={{
-                    minWidth: '20px',
-                    borderRadius: '5px',
-                    borderStyle: 'none',
-                    '&:hover':{
-                      bgcolor: '#4F6F52',
-                      boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
-                      transform: 'translateY(-2px)',
-                      '& .MuiTypography-root': {
-                        color: 'white'
-                      },
-                      '&:active': {
-                        boxShadow: 'none',
-                        transform: 'translateY(0)'
-                      }
-                    }
-                  }}>
-                  <Typography color={'white'}>+</Typography>
-                </Button>
-              </Box>
-              <Box justifyContent={'space-between'} display={'flex'} alignItems={'center'} ml={'auto'}>
-                <Typography variant='h6' fontWeight={'600'} sx={{ minWidth: '80px', textAlign: 'center' }}>
-                  {item.price}
-                </Typography>
-                <IconButton color="error">
-                  <DeleteIcon />
-                </IconButton>
-              </Box>
-            </Card>
-          ))}
-        </div>
+              </Card>
+            ))}
+          </div>
+        )}
       </Box>
     </Box>
   )
