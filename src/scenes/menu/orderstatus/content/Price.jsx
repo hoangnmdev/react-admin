@@ -1,6 +1,6 @@
 import { Box, Typography, Button } from '@mui/material'
 
-function Price() {
+function Price({ subTotal }) {
   return (
     <Box sx={{
       width: '380px',
@@ -26,7 +26,7 @@ function Price() {
         {/**Truyền price vào đây */}
         <Box sx={{ position: 'relative' }} >
           <Box>
-            <Typography fontSize={'13px'} fontWeight={'510'} color="initial">$35.00</Typography>
+            <Typography fontSize={'13px'} fontWeight={'510'} color="initial">{subTotal}Đ</Typography>
           </Box>
           <Box sx={{ position: 'absolute', top: '1.8rem', right: 0 }}>
             <Typography fontSize={'13px'} fontWeight={'510'} color="initial">$0.5</Typography>

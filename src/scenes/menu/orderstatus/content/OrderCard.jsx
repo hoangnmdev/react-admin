@@ -1,15 +1,23 @@
+/* eslint-disable no-console */
 import { Box, Card, Typography, Button, IconButton, Dialog, DialogTitle, DialogContent } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import FastfoodIcon from '@mui/icons-material/Fastfood'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AlertDialog from '~/components/AlertDialog'
 
-export default function OrderCard({ selectedItem, setSelectedItem }) {
+export default function OrderCard({ selectedItem, setSelectedItem, setSubTotal }) {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [imageOpen, setImageOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
   const [selectedImageTitle, setSelectedImageTitle] = useState(null)
+  const [itemRemove, setItemRemove] = useState(null) // State to store item name to remove
+
+  useEffect(() => {
+    const total = selectedItem.reduce((sum, item) => sum + parseFloat(item.totalPrice), 0).toFixed(3)
+    setSubTotal(total)
+    console.log('subtotal:', total)
+  }, [selectedItem, setSubTotal])
 
   const handleQuantityChange = (index, change) => {
     const newData = [...selectedItem]
@@ -26,19 +34,22 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
     setSelectedItem(newData)
   }
 
-  const handleDelete = (index) => {
-    const newData = [...selectedItem]
-    newData.splice(index, 1)
-    setSelectedItem(newData)
-    handleDialogClose()
+  const handleRemove = () => {
+    const indexToDelete = selectedItem.findIndex(item => item.itemName === itemRemove)
+    if (indexToDelete !== -1) {
+      const newData = [...selectedItem]
+      newData.splice(indexToDelete, 1)
+      setSelectedItem(newData)
+    }
+    handleDialogClose() // Close the dialog
   }
-
   const handleDialogClose = () => {
     setDialogOpen(false)
   }
 
-  const handleDialogOpen = () => {
-    setDialogOpen(true)
+  const handleDialogOpen = (itemName) => {
+    setItemRemove(itemName) // Set the itemName to state variable
+    setDialogOpen(true) // Open the dialog
   }
 
   const handleImageOpen = (image, title) => {
@@ -67,11 +78,7 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
         borderRadius={'10px'}
       >
         {selectedItem.length === 0 ? (
-          <Box
-            justifyContent={'center'}
-            alignItems={'center'}
-            display={'flex'}
-          >
+          <Box justifyContent={'center'} alignItems={'center'} display={'flex'}>
             <Box>
               <Box textAlign="center">
                 <FastfoodIcon sx={{ fontSize: '100px', color: '#7AB2B2' }} />
@@ -107,13 +114,14 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
                     <Typography fontSize={'14px'} color="initial" fontWeight={'510'}>
                       {item.itemName}
                     </Typography>
-                    <IconButton size="small"
+                    <IconButton
+                      size="small"
                       sx={{
                         '&.MuiIconButton-root': {
                           boxShadow: 'none',
                           borderRadius: '10px',
                           willChange: 'transform',
-                          '&:hover':{
+                          '&:hover': {
                             transform: 'translateY(-2px)',
                             color: '#1A2130',
                             '&:active': {
@@ -123,7 +131,8 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
                           }
                         }
                       }}
-                      onClick={() => handleImageOpen(item.itemImage, item.itemName)}>
+                      onClick={() => handleImageOpen(item.itemImage, item.itemName)}
+                    >
                       <OpenInNewIcon sx={{ fontSize: '15px' }} />
                     </IconButton>
                   </Box>
@@ -160,7 +169,9 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
                     >
                       <Typography color={'white'}>-</Typography>
                     </Button>
-                    <Typography color={'white'} mx={2}>{item.quantity}</Typography>
+                    <Typography color={'white'} mx={2}>
+                      {item.quantity}
+                    </Typography>
                     <Button
                       onClick={() => handleQuantityChange(index, 1)}
                       variant="outlined"
@@ -188,16 +199,17 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
                   </Box>
                 </Box>
                 <Box justifyContent={'space-between'} display={'flex'} alignItems={'center'}>
-                  <Typography variant='h6' fontWeight={'600'} sx={{ minWidth: '80px', textAlign: 'center' }}>
+                  <Typography variant="h6" fontWeight={'600'} sx={{ minWidth: '80px', textAlign: 'center' }}>
                     {item.totalPrice ? `${item.totalPrice}Đ` : `${item.price}Đ`}
                   </Typography>
-                  <IconButton color="error"
+                  <IconButton
+                    color="error"
                     sx={{
                       '&.MuiIconButton-root': {
                         boxShadow: 'none',
                         borderRadius: '10px',
                         willChange: 'transform',
-                        '&:hover':{
+                        '&:hover': {
                           transform: 'translateY(-2px)',
                           '&:active': {
                             boxShadow: 'none',
@@ -206,8 +218,9 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
                         }
                       }
                     }}
-                    onClick={handleDialogOpen}>
-                    <DeleteIcon/>
+                    onClick={() => handleDialogOpen(item.itemName)}
+                  >
+                    <DeleteIcon />
                   </IconButton>
                 </Box>
               </Card>
@@ -215,15 +228,18 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
           </div>
         )}
       </Box>
-      <AlertDialog open={dialogOpen} handleClose={handleDialogClose}
-        title={'Delete item?'} contentText={'Do you want delete item from list?'}
-        cancelLabel={'Cancel'} confirmLabel={'Delete'} handleConfirm={handleDelete}
+      <AlertDialog
+        open={dialogOpen}
+        handleClose={handleDialogClose}
+        title={'Remove item?'}
+        contentText={'Do you want remove item from list?'}
+        cancelLabel={'Cancel'}
+        confirmLabel={'Remove'}
+        handleConfirm={handleRemove}
       />
       <Dialog open={imageOpen} onClose={handleImageClose}>
         <DialogTitle>
-          <Typography sx={{ fontSize: '17px', fontWeight: '600' }}>
-            { selectedImageTitle}
-          </Typography>
+          <Typography sx={{ fontSize: '17px', fontWeight: '600' }}>{selectedImageTitle}</Typography>
         </DialogTitle>
         <DialogContent>
           <img src={selectedImage} alt={selectedImageTitle} style={{ width: '300px' }} />
