@@ -22,7 +22,7 @@ function MenuCard({ itemName, price, itemImage, onItemClick }) {
           transform: 'translateY(0)'
         }
       }}
-      onClick={onItemClick} // Add onClick to handle item click
+      onClick= {onItemClick} // Add onClick to handle item click
     >
       <CardActionArea>
         <CardMedia

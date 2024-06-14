@@ -14,7 +14,15 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
   const handleQuantityChange = (index, change) => {
     const newData = [...selectedItem]
     const newQuantity = newData[index].quantity + change
-    newData[index].quantity = newQuantity < 1 ? 1 : newQuantity
+
+    if (newQuantity < 1) {
+      newData[index].quantity = 1
+    } else {
+      newData[index].quantity = newQuantity
+      const pricePerItem = parseFloat(newData[index].price)
+      newData[index].totalPrice = (newQuantity * pricePerItem).toFixed(3)
+    }
+
     setSelectedItem(newData)
   }
 
@@ -24,17 +32,21 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
     setSelectedItem(newData)
     handleDialogClose()
   }
+
   const handleDialogClose = () => {
     setDialogOpen(false)
   }
+
   const handleDialogOpen = () => {
     setDialogOpen(true)
   }
+
   const handleImageOpen = (image, title) => {
     setSelectedImage(image)
     setSelectedImageTitle(title)
     setImageOpen(true)
   }
+
   const handleImageClose = () => {
     setImageOpen(false)
     setSelectedImage('')
@@ -177,8 +189,7 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
                 </Box>
                 <Box justifyContent={'space-between'} display={'flex'} alignItems={'center'}>
                   <Typography variant='h6' fontWeight={'600'} sx={{ minWidth: '80px', textAlign: 'center' }}>
-                    {item.itemName === 'Quẩy Nhà Làm' || item.itemName === 'Phở Chiên Phồng' || item.itemName === 'Phở Cuốn'
-                      ? `${item.price}` : `${item.price}Đ`}
+                    {item.totalPrice ? `${item.totalPrice}Đ` : `${item.price}Đ`}
                   </Typography>
                   <IconButton color="error"
                     sx={{
@@ -210,7 +221,7 @@ export default function OrderCard({ selectedItem, setSelectedItem }) {
       />
       <Dialog open={imageOpen} onClose={handleImageClose}>
         <DialogTitle>
-          <Typography sx={{ fontSize: '17px', fontWeight: '600'}}>
+          <Typography sx={{ fontSize: '17px', fontWeight: '600' }}>
             { selectedImageTitle}
           </Typography>
         </DialogTitle>

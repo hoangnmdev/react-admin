@@ -7,10 +7,10 @@ function Content({ menuList, setSelectedItem }) {
       const existingItem = prevItems.find((i) => i.menuId === item.menuId)
       if (existingItem) {
         return prevItems.map((i) =>
-          i.menuId === item.menuId ? { ...i, quantity: i.quantity + 1 } : i
+          i.menuId === item.menuId ? { ...i, quantity: i.quantity + 1, totalPrice: (parseFloat(i.price) * (i.quantity + 1)).toFixed(3) } : i
         )
       } else {
-        return [...prevItems, { ...item, quantity: 1 }]
+        return [...prevItems, { ...item, quantity: 1, totalPrice: item.price }]
       }
     })
   }
@@ -26,6 +26,7 @@ function Content({ menuList, setSelectedItem }) {
                 price={menu.price}
                 itemImage={menu.itemImage}
                 onItemClick={() => handleAddItem(menu)}
+                setSelectedItem={setSelectedItem}
               />
             </Grid>
           ))}
