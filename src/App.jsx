@@ -20,6 +20,7 @@ function App() {
   const location = useLocation()
   const [selectedTable, setSelectedTable] = useState(null) // State to store selected table details
   const [selectedItem, setSelectedItem] = useState([])
+  const [subTotal, setSubTotal] = useState(0)
   // Hide sidebar and topbar on the login page
   const isLoginPage = location.pathname === '/login'
   const isSignupPage = location.pathname === '/signup'
@@ -41,7 +42,9 @@ function App() {
               {/* Redirect from root to /dashboard */}
               <Route path="/" element={<Navigate to="/login" />} />
               <Route path="/dashboard" element={<Dashboard selectedTable={selectedTable} setSelectedTable={setSelectedTable}/>} />
-              <Route path="/menu" element={<Menu selectedTable={selectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>} />
+              <Route path="/menu" element={<Menu selectedTable={selectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem}
+                subTotal={subTotal} setSubTotal={setSubTotal}
+              />}/>
               <Route path="/payment" element={<Payment />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/bar" element={<BarChart />} />
