@@ -14,9 +14,9 @@ export default function OrderCard({ selectedItem, setSelectedItem, setSubTotal }
   const [itemRemove, setItemRemove] = useState(null) // State to store item name to remove
 
   useEffect(() => {
-    const total = selectedItem.reduce((sum, item) => sum + parseFloat(item.totalPrice), 0).toFixed(3)
-    setSubTotal(total)
-    console.log('subtotal:', total)
+    const subtotal = selectedItem.reduce((sum, item) => sum + parseFloat(item.totalPrice), 0).toFixed(3)
+    setSubTotal(subtotal)
+    console.log('subtotal:', subtotal)
   }, [selectedItem, setSubTotal])
 
   const handleQuantityChange = (index, change) => {
