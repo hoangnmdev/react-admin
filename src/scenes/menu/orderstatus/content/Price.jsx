@@ -1,12 +1,33 @@
 import { Box, Typography, Button } from '@mui/material'
+import AlertDialog from '~/components/AlertDialog'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function Price({ subTotal }) {
+function Price({ subTotal, setSelectedTable }) {
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const handleDialogClose = () => {
+    setDialogOpen(false)
+  }
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true) // Open the dialog
+  }
+  const handleConfirm = () => {
+    navigate('/dashboard')
+    setSelectedTable(null)
+  }
+  const handleSendOrder = () => {
+    navigate('/payment')
+  }
+  const totalPrice = subTotal
   return (
     <Box sx={{
-      width: '380px',
+      width: '420px',
       height: '250px',
       border:'3px dashed rgba(0, 0, 0, 0.1)',
-      mt: '30px',
+      mt: '15px',
       borderRadius: '10px',
       bgcolor: '#FAFAFA'
     }}>
@@ -40,13 +61,13 @@ function Price({ subTotal }) {
         p={'0px 2px 0 2px'}
       >
         <Typography fontSize={'25px'} fontWeight={'600'} p={'12px'}>TOTAL</Typography>
-        <Typography fontSize={'25px'} fontWeight={'600'} p={'12px'}>$38.50</Typography>
+        <Typography fontSize={'25px'} fontWeight={'600'} p={'12px'}>{totalPrice}Đ</Typography>
       </Box>
       <Box
         p='2rem 1.5rem 0 1.5rem'
         display={'flex'}
         justifyContent={'space-between'}>
-        <Button
+        <Button onClick={handleDialogOpen}
           sx={{
             '&.MuiButton-containedPrimary': {
               bgcolor: '#FF6868',
@@ -105,6 +126,15 @@ function Price({ subTotal }) {
           </Typography>
         </Button>
       </Box>
+      <AlertDialog
+        open={dialogOpen}
+        handleClose={handleDialogClose}
+        title={'Cancel order?'}
+        contentText={'Do you want cancel order?'}
+        cancelLabel={'Reject'}
+        confirmLabel={'Confirm'}
+        handleConfirm={handleConfirm}
+      />
     </Box>
   )
 }
