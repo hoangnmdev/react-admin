@@ -39,7 +39,7 @@ function MenuCard({ itemName, price, itemImage, onItemClick }) {
           </Box>
           <Box p={'5px 0 0px 0px'} display={'flex'} justifyContent={'center'}>
             <Typography variant='h5' fontWeight={'600'} color="initial">
-              {itemName === 'Quẩy Nhà Làm' || itemName === 'Phở Chiên Phồng' || itemName === 'Phở Cuốn' ? `${price}` : `${price}Đ`}
+              {price}Đ
             </Typography>
           </Box>
         </Box>
