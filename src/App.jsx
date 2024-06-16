@@ -22,6 +22,7 @@ function App() {
   const [selectedItem, setSelectedItem] = useState([])
   const [subTotal, setSubTotal] = useState(0)
   const [total, setTotal] = useState(0)
+  const [subTotalItem, setSubTotalItem] = useState(0)
   // Hide sidebar and topbar on the login page
   const isLoginPage = location.pathname === '/login'
   const isSignupPage = location.pathname === '/signup'
@@ -49,7 +50,7 @@ function App() {
                 subTotal={subTotal} setSubTotal={setSubTotal} total={total} setTotal={setTotal}
               />}/>
               <Route path="/payment" element={<Payment selectedTable={selectedTable} selectedItem={selectedItem}
-                subTotal={subTotal}/>} />
+                total={total} subTotal={subTotal}/>}/>
               <Route path="/orders" element={<Orders />} />
               <Route path="/bar" element={<BarChart />} />
               <Route path="/line" element={<LineChart />} />
