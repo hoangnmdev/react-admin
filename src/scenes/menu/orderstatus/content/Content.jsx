@@ -10,7 +10,9 @@ function Content({ selectedItem, setSelectedItem, subTotal, setSubTotal, total, 
       alignItems: 'center'
     }}>
       <OrderCard selectedItem={selectedItem} setSelectedItem={setSelectedItem} setSubTotal={setSubTotal} total={total}/>
-      <Price subTotal={subTotal} total={total} setTotal={setTotal} selectedTable={selectedTable} setSelectedTable={setSelectedTable}/>
+      <Price subTotal={subTotal} total={total} setTotal={setTotal} selectedTable={selectedTable} setSelectedTable={setSelectedTable}
+        setSelectedItem={setSelectedItem} selectedItem={selectedItem}
+      />
     </Box>
   )
 }

@@ -1,5 +1,4 @@
-import { Box, useTheme, Typography } from '@mui/material'
-import { tokens } from '~/theme'
+import { Box, Typography } from '@mui/material'
 import TableBarIcon from '@mui/icons-material/TableBar'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import { capitalizeLetter } from '~/utils/formatter'
@@ -7,12 +6,10 @@ import { useEffect, useState } from 'react'
 import { displayTime } from '~/utils/time'
 
 const ORDER_TITLE = 'order#:'
-let ORDER_ID = '8797'
 const ORDER_TABLE_TITLE = 'table:'
 const ORDER_TIME_TITLE = 'time:'
-let ORDER_TABLE_NUMBER = 1
 
-function Header() {
+function Header({ selectedTable }) {
   const [currentTime, setCurrentTime] = useState('')
   // Update the current time every second
   useEffect(() => {
@@ -36,13 +33,13 @@ function Header() {
     >
       <Box>
         <Typography fontSize={'25px'} ml={'10px'} display={'inline'}>{capitalizeLetter(ORDER_TITLE)}</Typography>
-        <Typography fontSize={'25px'} display={'inline'} ml={'5px'}>{ORDER_ID}</Typography>
+        <Typography fontSize={'25px'} display={'inline'} ml={'5px'}>{selectedTable ? `${selectedTable.orderId}` : ''}</Typography>
       </Box>
       <Box display={'flex'}>
         <Box display={'flex'} alignItems={'center'}>
           <TableBarIcon sx={{ fontSize: '20px' }}/>
           <Typography fontSize={'15px'} color="initial" ml={'5px'} fontWeight={'600'}>{capitalizeLetter(ORDER_TABLE_TITLE)}</Typography>
-          <Typography fontSize={'22px'} fontWeight={'600'} ml={'5px'} color={'#F0B86E'}>{ORDER_TABLE_NUMBER}</Typography>
+          <Typography fontSize={'22px'} fontWeight={'600'} ml={'5px'} color={'#F0B86E'}>{selectedTable ? `${selectedTable.tableId}` : ''}</Typography>
         </Box>
         <Box ml={'15px'} display={'flex'} alignItems={'center'}>
           <AccessTimeIcon sx={{ fontSize: '20px' }}/>
