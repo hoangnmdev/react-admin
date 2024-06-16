@@ -3,7 +3,7 @@ import Header from './header/Header'
 import Content from './content/Content'
 import Footer from './footer/Footer'
 
-function PaymentList({ selectedTable, selectedItem }) {
+function PaymentList({ selectedTable, selectedItem, setSelectedTable, setSelectedItem }) {
   return (
     <Box
       width={'1000px'}
@@ -15,7 +15,7 @@ function PaymentList({ selectedTable, selectedItem }) {
       {/*Content*/}
       <Content selectedTable={selectedTable} selectedItem={selectedItem}/>
       {/*Footer*/}
-      <Footer/>
+      <Footer selectedTable={selectedTable} selectedItem={selectedItem} setSelectedTable={setSelectedTable} setSelectedItem={setSelectedItem}/>
     </Box>
   )
 }

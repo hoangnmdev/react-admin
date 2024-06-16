@@ -1,7 +1,27 @@
 import { Box, Button } from '@mui/material'
 import Typography from '@mui/material/Typography'
+import AlertDialog from '~/components/AlertDialog'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-function Footer() {
+function Footer({ setSelectedTable, setSelectedItem }) {
+  const [cancelDialogOpen, setCancelDialogOpen] = useState(false)
+  const navigate = useNavigate()
+  const handleCancelDialogClose = () => {
+    setCancelDialogOpen(false)
+  }
+
+  const handleConfirmCancel = () => {
+    navigate('/dashboard')
+    setSelectedTable(null)
+    setSelectedItem([])
+    handleCancelDialogClose()
+  }
+
+  const handleCancelDialogOpen = () => {
+    setCancelDialogOpen(true) // Open the cancel dialog
+  }
+
   return (
     <Box
       bgcolor={'white'}
@@ -11,14 +31,23 @@ function Footer() {
       alignItems={'center'}
       justifyContent={'center'}
     >
-      <Button
+      <Button onClick={handleCancelDialogOpen}
         sx={{
           '&.MuiButton-containedPrimary': {
             bgcolor: '#FF6868',
             boxShadow: 'none',
             width: '800px',
             height: '70px',
-            borderRadius: '10px'
+            borderRadius: '10px',
+            willChange: 'transform',
+            '&:hover': {
+              boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+              transform: 'translateY(-2px)',
+              '&:active': {
+                boxShadow: 'none',
+                transform: 'translateY(0)'
+              }
+            }
           }
         }} variant="contained">
         <Typography sx={{
@@ -31,6 +60,15 @@ function Footer() {
         CANCEL ORDER
         </Typography>
       </Button>
+      <AlertDialog
+        open={cancelDialogOpen}
+        handleClose={handleCancelDialogClose}
+        title={'Cancel order?'}
+        contentText={'Do you want to cancel the order?'}
+        cancelLabel={'Reject'}
+        confirmLabel={'Confirm'}
+        handleConfirm={handleConfirmCancel}
+      />
     </Box>
   )
 }
