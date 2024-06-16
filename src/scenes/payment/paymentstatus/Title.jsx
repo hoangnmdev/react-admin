@@ -4,7 +4,7 @@ import { capitalizeLetter } from '~/utils/formatter'
 
 const GUEST_TITLE = 'guest:'
 
-function Title({ selectedTable, subTotal }) {
+function Title({ selectedTable, total }) {
   return (
     <Box
       display={'flex'}
@@ -13,7 +13,7 @@ function Title({ selectedTable, subTotal }) {
       height={'40px'}
     >
       <Box display={'flex'} alignItems={'center'}>
-        <Typography fontSize={'25px'} color={'#F0B86E'}>{subTotal ? subTotal : ''}Đ</Typography>
+        <Typography fontSize={'25px'} color={'#F0B86E'}>{total ? total : ''}Đ</Typography>
       </Box>
 
       <Box display={'flex'} alignItems={'center'}>

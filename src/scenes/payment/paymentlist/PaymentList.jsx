@@ -3,7 +3,7 @@ import Header from './header/Header'
 import Content from './content/Content'
 import Footer from './footer/Footer'
 
-function TableList({ selectedTable, selectedItem }) {
+function PaymentList({ selectedTable, selectedItem }) {
   return (
     <Box
       width={'1000px'}
@@ -20,4 +20,4 @@ function TableList({ selectedTable, selectedItem }) {
   )
 }
 
-export default TableList
+export default PaymentList

@@ -3,7 +3,7 @@ import Header from './Header'
 import Title from './Title'
 import Content from './Content'
 
-function OrderStatus({ selectedTable, subTotal }) {
+function OrderStatus({ selectedTable, total, subTotal }) {
   return (
     <Box
       width={'calc(100% - 1000px)'}
@@ -13,9 +13,9 @@ function OrderStatus({ selectedTable, subTotal }) {
       {/*Header*/}
       <Header/>
       {/*Title*/}
-      <Title selectedTable={selectedTable} subTotal={subTotal}/>
+      <Title selectedTable={selectedTable} total={total}/>
       {/*Content*/}
-      <Content/>
+      <Content subTotal={subTotal}/>
     </Box>
   )
 }

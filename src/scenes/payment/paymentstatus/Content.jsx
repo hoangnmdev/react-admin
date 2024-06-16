@@ -1,37 +1,39 @@
+import { useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { capitalizeLetter } from '~/utils/formatter'
 import PaymentsIcon from '@mui/icons-material/Payments'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
 
 const ADD_TIP_TITLE = 'add tip'
-const TIP_NUMBER_1 = 5
-const TIP_NUMBER_2 = 10
-const TIP_NUMBER_3 = 15
-const TIP_NUMBER_4 = 20
-
+const TIP_OPTIONS = [10, 20, 30, 40]
 const CASH_TITLE = 'cash'
 const CARD_TITLE = 'card'
 const VOUCHER_TITLE = 'voucher'
-
 const SUBTOTAL_TITLE = 'subtotal'
 const TIPS_TITLE = 'tips'
 const SERVICE_CHARGE_TITLE = 'service charge:'
-let SERVICE_CHARGE_AMOUNT = 10
-let SUBTOTAL_NUMBER = 35.00
-let SERVICE_CHARGE_NUMBER = 0.5
-
+const SERVICE_CHARGE_AMOUNT = 10
 const TOTAL_TITLE = 'total'
-let TOTAL = SUBTOTAL_NUMBER + SERVICE_CHARGE_NUMBER + TIP_NUMBER_1
 const PAYNOW_TITLE = 'pay now'
 
-function Content() {
+function Content({ subTotal }) {
+  const [selectedTip, setSelectedTip] = useState(0)
+
+  // Ensure subTotal is treated as a number
+  const subTotalNumber = parseFloat(subTotal)
+  const serviceCharge = (subTotalNumber * 0.10).toFixed(3) // 10% service charge, fixed to 2 decimal places
+
+  const handleTipClick = (tip) => {
+    setSelectedTip(tip)
+  }
+
+  const total = (subTotalNumber + parseFloat(serviceCharge) + selectedTip).toFixed(3)
+
   return (
-    <Box
-      height={'calc(100vh - 70px - 40px - 60px)'}
-    >
+    <Box height={'calc(100vh - 70px - 40px - 60px)'}>
       <Box
-        borderBottom= '2px dashed rgba(0, 0, 0, 0.1)'
-        borderTop= '2px dashed rgba(0, 0, 0, 0.1)'
+        borderBottom='2px dashed rgba(0, 0, 0, 0.1)'
+        borderTop='2px dashed rgba(0, 0, 0, 0.1)'
         width={'100%'}
         height={'85px'}
         p='25px'
@@ -39,79 +41,38 @@ function Content() {
         justifyContent={'space-between'}
         alignItems={'center'}
       >
-        <Typography fontSize={'14px'} fontWeight={'700'}>{capitalizeLetter(ADD_TIP_TITLE)}</Typography>
-        <Button
-          sx={{
-            '&.MuiButton-containedPrimary': {
-              bgcolor: '#FAFAFA',
-              boxShadow: 'none',
-              height: '2.5rem',
-              borderRadius: '10px',
-              '&:hover': {
-                bgcolor: '#F1F2EB',
-                '& .MuiTypography-root': {
-                  color: 'black'
+        <Typography fontSize={'18px'} fontWeight={'700'}>{capitalizeLetter(ADD_TIP_TITLE)}</Typography>
+        {TIP_OPTIONS.map((tip) => (
+          <Button
+            key={tip}
+            onClick={() => handleTipClick(tip)}
+            sx={{
+              '&.MuiButton-containedPrimary': {
+                bgcolor: '#FAFAFA',
+                boxShadow: 'none',
+                height: '2.5rem',
+                borderRadius: '10px',
+                '&:hover': {
+                  boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                  transform: 'translateY(-2px)',
+                  '&:active': {
+                    boxShadow: 'none',
+                    transform: 'translateY(0)'
+                  },
+                  '& .MuiTypography-root': {
+                    color: 'black'
+                  },
+                  '& .MuiSvgIcon-root': {
+                    color: 'black'
+                  }
                 }
               }
-            }
-          }} variant="contained"
-        >
-          <Typography variant='h3' color={'#A9A9A9'}>${TIP_NUMBER_1}</Typography>
-        </Button>
-        <Button
-          sx={{
-            '&.MuiButton-containedPrimary': {
-              bgcolor: '#FAFAFA',
-              boxShadow: 'none',
-              height: '2.5rem',
-              borderRadius: '10px',
-              '&:hover': {
-                bgcolor: '#F1F2EB',
-                '& .MuiTypography-root': {
-                  color: 'black'
-                }
-              }
-            }
-          }} variant="contained"
-        >
-          <Typography variant='h3' color={'#A9A9A9'}>${TIP_NUMBER_2}</Typography>
-        </Button>
-        <Button
-          sx={{
-            '&.MuiButton-containedPrimary': {
-              bgcolor: '#FAFAFA',
-              boxShadow: 'none',
-              height: '2.5rem',
-              borderRadius: '10px',
-              '&:hover': {
-                bgcolor: '#F1F2EB',
-                '& .MuiTypography-root': {
-                  color: 'black'
-                }
-              }
-            }
-          }} variant="contained"
-        >
-          <Typography variant='h3' color={'#A9A9A9'}>${TIP_NUMBER_3}</Typography>
-        </Button>
-        <Button
-          sx={{
-            '&.MuiButton-containedPrimary': {
-              bgcolor: '#FAFAFA',
-              boxShadow: 'none',
-              height: '2.5rem',
-              borderRadius: '10px',
-              '&:hover': {
-                bgcolor: '#F1F2EB',
-                '& .MuiTypography-root': {
-                  color: 'black'
-                }
-              }
-            }
-          }} variant="contained"
-        >
-          <Typography variant='h3' color={'#A9A9A9'}>${TIP_NUMBER_4}</Typography>
-        </Button>
+            }} variant="contained">
+            <Typography variant='h3' color={'#A9A9A9'}>
+              {tip}
+            </Typography>
+          </Button>
+        ))}
       </Box>
       <Box
         width={'100%'}
@@ -130,18 +91,21 @@ function Content() {
               width: '70px',
               borderRadius: '10px',
               '&:hover': {
-                bgcolor: '#F1F2EB',
-                '& .MuiSvgIcon-root': {
+                boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                transform: 'translateY(-2px)',
+                '&:active': {
+                  boxShadow: 'none',
+                  transform: 'translateY(0)'
+                },
+                '& .MuiTypography-root': {
                   color: 'black'
                 },
-                '& .MuiTypography-root':{
-                  color: 'black',
-                  fontWeight: '600'
+                '& .MuiSvgIcon-root': {
+                  color: 'black'
                 }
               }
             }
-          }} variant="contained"
-        >
+          }} variant="contained">
           <Box>
             <PaymentsIcon sx={{ color: '#A9A9A9' }}/>
             <Typography fontWeight={'600'} color={'#A9A9A9'}>{capitalizeLetter(CASH_TITLE)}</Typography>
@@ -156,18 +120,21 @@ function Content() {
               width: '70px',
               borderRadius: '10px',
               '&:hover': {
-                bgcolor: '#F1F2EB',
-                '& .MuiSvgIcon-root': {
+                boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                transform: 'translateY(-2px)',
+                '&:active': {
+                  boxShadow: 'none',
+                  transform: 'translateY(0)'
+                },
+                '& .MuiTypography-root': {
                   color: 'black'
                 },
-                '& .MuiTypography-root':{
-                  color: 'black',
-                  fontWeight: '600'
+                '& .MuiSvgIcon-root': {
+                  color: 'black'
                 }
               }
             }
-          }} variant="contained"
-        >
+          }} variant="contained">
           <Box>
             <CreditCardIcon sx={{ color: '#A9A9A9' }}/>
             <Typography fontWeight={'600'} color={'#A9A9A9'}>{capitalizeLetter(CARD_TITLE)}</Typography>
@@ -179,21 +146,24 @@ function Content() {
               bgcolor: '#FAFAFA',
               boxShadow: 'none',
               height: '4rem',
-              width: '90px',
+              width: '70px',
               borderRadius: '10px',
               '&:hover': {
-                bgcolor: '#F1F2EB',
-                '& .MuiSvgIcon-root': {
+                boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                transform: 'translateY(-2px)',
+                '&:active': {
+                  boxShadow: 'none',
+                  transform: 'translateY(0)'
+                },
+                '& .MuiTypography-root': {
                   color: 'black'
                 },
-                '& .MuiTypography-root':{
-                  color: 'black',
-                  fontWeight: '600'
+                '& .MuiSvgIcon-root': {
+                  color: 'black'
                 }
               }
             }
-          }} variant="contained"
-        >
+          }} variant="contained">
           <Box>
             <PaymentsIcon sx={{ color: '#A9A9A9' }}/>
             <Typography fontWeight={'600'} color={'#A9A9A9'}>{capitalizeLetter(VOUCHER_TITLE)}</Typography>
@@ -206,8 +176,6 @@ function Content() {
         borderTop:'3px dashed rgba(0, 0, 0, 0.1)',
         mt: '30px'
       }}>
-
-
         <Box
           p={'25px'}
           justifyContent={'space-between'}
@@ -224,27 +192,24 @@ function Content() {
           </Box>
           <Box sx={{ position: 'relative' }} >
             <Box sx={{ position: 'absolute', top: 0, right: 0, bottom: 0 }}>
-              <Typography fontSize={'13px'} fontWeight={'510'} color="initial">${SUBTOTAL_NUMBER}</Typography>
-              {/* <Typography fontSize={'13px'} fontWeight={'510'} color="initial">${TIP_NUMBER_1}</Typography> */}
+              <Typography fontSize={'13px'} fontWeight={'510'} color="initial">{subTotal ? subTotal : ''}Đ</Typography>
             </Box>
             <Box sx={{ position: 'absolute', right: 0, top: 18, bottom:0 }}>
-              <Typography fontSize={'13px'} fontWeight={'510'} color="initial">${TIP_NUMBER_1}</Typography>
+              <Typography fontSize={'13px'} fontWeight={'510'} color="initial">{selectedTip.toFixed(3)}Đ</Typography>
             </Box>
             <Box sx={{ position: 'absolute', top: 40, right: 0 }}>
-              <Typography fontSize={'13px'} fontWeight={'510'} color="initial">${SERVICE_CHARGE_NUMBER}</Typography>
+              <Typography fontSize={'13px'} fontWeight={'510'} color="initial">{serviceCharge ? serviceCharge : ''}Đ</Typography>
             </Box>
           </Box>
         </Box>
-
-
         <Box
           display={'flex'}
           justifyContent={'space-between'}
           borderTop={'3px dashed rgba(0, 0, 0, 0.1)'}
           p={'25px 25px 0 25px'}
         >
-          <Typography fontSize={'25px'} p={'12px'}>{capitalizeLetter(TOTAL_TITLE)}</Typography>
-          <Typography fontSize={'25px'} p={'12px'}>${TOTAL}</Typography>
+          <Typography fontSize={'30px'} p={'10px'}>{capitalizeLetter(TOTAL_TITLE)}</Typography>
+          <Typography fontSize={'30px'} p={'10px'}>{total}Đ</Typography>
         </Box>
         <Box
           display={'flex'}
@@ -258,7 +223,16 @@ function Content() {
                 boxShadow: 'none',
                 width: '380px',
                 height: '70px',
-                borderRadius: '10px'
+                borderRadius: '10px',
+                willChange: 'transform',
+                '&:hover': {
+                  boxShadow: 'rgba(0, 0, 0, 0.25) 0 2px 10px',
+                  transform: 'translateY(-2px)',
+                  '&:active': {
+                    boxShadow: 'none',
+                    transform: 'translateY(0)'
+                  }
+                }
               }
             }} variant="contained">
             <Typography sx={{

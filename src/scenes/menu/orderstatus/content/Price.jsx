@@ -82,7 +82,7 @@ function Price({ subTotal, setSelectedTable, setSelectedItem, total, setTotal, s
         </Box>
         <Box sx={{ position: 'relative' }}>
           <Box>
-            <Typography fontSize={'13px'} fontWeight={'510'} color="initial">{subTotalNumber.toFixed(2)}Đ</Typography>
+            <Typography fontSize={'13px'} fontWeight={'510'} color="initial">{subTotalNumber.toFixed(3)}Đ</Typography>
           </Box>
           <Box sx={{ position: 'absolute', top: '1.8rem', right: 0 }}>
             <Typography fontSize={'13px'} fontWeight={'510'} color="initial">{serviceCharge}Đ</Typography>
