@@ -16,7 +16,7 @@ export default function OrderCard({ selectedItem, setSelectedItem, setSubTotal }
   useEffect(() => {
     const subtotal = selectedItem.reduce((sum, item) => sum + parseFloat(item.totalPrice), 0).toFixed(3)
     setSubTotal(subtotal)
-    console.log('subtotal:', subtotal)
+    console.log('selectedItem', selectedItem)
   }, [selectedItem, setSubTotal])
 
   const handleQuantityChange = (index, change) => {

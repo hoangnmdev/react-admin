@@ -2,7 +2,7 @@ import MenuList from './menulist/MenuList'
 import OrderStatus from './orderstatus/OrderStatus'
 import { Box } from '@mui/material'
 
-function Menu({ selectedTable, setSelectedTable, selectedItem, setSelectedItem, subTotal, setSubTotal, total, setTotal }) {
+function Menu({ selectedTable, setSelectedTable, selectedItem, setSelectedItem, subTotal, setSubTotal, total, setTotal, subTotalItem, setSubTotalItem }) {
   return (
     <Box
       height={'calc(100vh - 70px)'}
@@ -14,6 +14,7 @@ function Menu({ selectedTable, setSelectedTable, selectedItem, setSelectedItem, 
         selectedItem={selectedItem} setSelectedItem={setSelectedItem}
         subTotal={subTotal} setSubTotal={setSubTotal}
         total={total} setTotal={setTotal}
+        subTotalItem={subTotalItem} setSubTotalItem={setSubTotalItem}
       />
     </Box>
   )
