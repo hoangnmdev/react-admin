@@ -1,22 +1,19 @@
 /* eslint-disable indent */
-import { Box, useTheme } from '@mui/material'
+import { Box } from '@mui/material'
 // import { tokens } from '~/theme'
 import TableList from './paymentlist/TableList'
 import OrderStatus from './paymentstatus/OrderStatus'
-const Dashboard = () => {
-  // const theme = useTheme()
-  // const colors = tokens(theme.palette.mode)
-
+const Payment = ({ selectedTable, selectedItem, subTotal }) => {
   return (
     <Box
     height={'calc(100vh - 70px)'}
     display={'flex'}
     borderTop= '2px solid rgba(0, 0, 0, 0.1)'
     >
-     <TableList/>
-     <OrderStatus/>
+     <TableList selectedTable={selectedTable} selectedItem={selectedItem}/>
+     <OrderStatus selectedTable={selectedTable} subTotal={subTotal}/>
     </Box>
   )
 }
 
-export default Dashboard
+export default Payment

@@ -48,7 +48,8 @@ function App() {
                 selectedItem={selectedItem} setSelectedItem={setSelectedItem}
                 subTotal={subTotal} setSubTotal={setSubTotal} total={total} setTotal={setTotal}
               />}/>
-              <Route path="/payment" element={<Payment />} />
+              <Route path="/payment" element={<Payment selectedTable={selectedTable} selectedItem={selectedItem}
+                subTotal={subTotal}/>} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/bar" element={<BarChart />} />
               <Route path="/line" element={<LineChart />} />

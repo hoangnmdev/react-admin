@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material'
 import TableBarIcon from '@mui/icons-material/TableBar'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
 import { useState } from 'react'
-import SnackBarAlert from './SnackBarAlert'
+import SnackBarAlert from '~/components/SnackBarAlert'
 import { capitalizeLetter } from '~/utils/formatter'
 import { useNavigate } from 'react-router-dom'
 
@@ -113,7 +113,7 @@ function Footer({ selectedTable }) {
         </Button>
       </Box>
       {/* Snackbar for notification */}
-      <SnackBarAlert open={openSnackBar} onClose={handleSnackBarClose} />
+      <SnackBarAlert open={openSnackBar} onClose={handleSnackBarClose} message={'Please select the table before proceeding.'}/>
     </Box>
   )
 }

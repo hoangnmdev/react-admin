@@ -1,6 +1,6 @@
 import { Snackbar, Alert, Typography } from '@mui/material'
 
-function SnackBarAlert({ open, onClose }) {
+function SnackBarAlert({ open, onClose, message }) {
   return (
     <Snackbar
       open={open}
@@ -9,7 +9,7 @@ function SnackBarAlert({ open, onClose }) {
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     >
       <Alert onClose={onClose} severity="warning" sx={{ width: '100%', height: '50px' }}>
-        <Typography> Please select a table before proceeding.</Typography>
+        <Typography>{message}</Typography>
       </Alert>
     </Snackbar>
   )
