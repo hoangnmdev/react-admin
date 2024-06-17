@@ -1,4 +1,4 @@
-import { Box, useTheme, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 function Header({ selectedTable }) {
   return (

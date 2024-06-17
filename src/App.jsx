@@ -42,7 +42,10 @@ function App() {
             <Routes>
               {/* Redirect from root to /dashboard */}
               <Route path="/" element={<Navigate to="/login" />} />
-              <Route path="/dashboard" element={<Dashboard selectedTable={selectedTable} setSelectedTable={setSelectedTable}/>} />
+              <Route path="/dashboard" element={<Dashboard
+                selectedTable={selectedTable} setSelectedTable={setSelectedTable}
+                selectedItem={selectedItem}
+              />} />
               <Route path="/menu" element={<Menu
                 selectedTable={selectedTable} setSelectedTable={setSelectedTable}
                 selectedItem={selectedItem} setSelectedItem={setSelectedItem}
