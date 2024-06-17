@@ -43,9 +43,9 @@ function Content({ selectedItem }) {
             zIndex: 1
           }}
         >
-          <Typography fontSize={'16px'} fontWeight={'bold'} width={'50%'}>Item</Typography>
-          <Typography fontSize={'16px'} fontWeight={'bold'} width={'25%'} textAlign={'center'}>Quantity</Typography>
-          <Typography fontSize={'16px'} fontWeight={'bold'} width={'25%'} textAlign={'center'}>Subtotal</Typography>
+          <Typography fontSize={'16px'} fontWeight={'600'} width={'50%'}>Item</Typography>
+          <Typography fontSize={'16px'} fontWeight={'600'} width={'25%'} textAlign={'center'}>Quantity</Typography>
+          <Typography fontSize={'16px'} fontWeight={'600'} width={'25%'} textAlign={'center'}>Subtotal</Typography>
         </Box>
         {selectedItem.length === 0 ? (
           <Box justifyContent={'center'} alignItems={'center'} display={'flex'} height={'100%'}>

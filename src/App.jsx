@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { ThemeProvider } from '@emotion/react'
 import CssBaseline from '@mui/material/CssBaseline'
 import { ColorModeContext, useMode } from './theme'
@@ -5,7 +6,7 @@ import Topbar from './components/Topbar'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Dashboard from './scenes/dashboard/Dashboard'
 import Sidebar from './components/Sidebar'
-import { useState } from 'react'
+import { SnackbarProvider } from 'notistack'
 import Menu from './scenes/menu/Menu'
 import Payment from '~/scenes/payment/Payment'
 import Orders from './scenes/orders/Orders'
@@ -22,6 +23,7 @@ function App() {
   const [selectedItem, setSelectedItem] = useState([])
   const [subTotal, setSubTotal] = useState(0)
   const [total, setTotal] = useState(0)
+
   // Hide sidebar and topbar on the login page
   const isLoginPage = location.pathname === '/login'
   const isSignupPage = location.pathname === '/signup'
@@ -29,39 +31,27 @@ function App() {
   const shouldDisplayTopbar = !isLoginPage && !isSignupPage
 
   return (
-    // Step 3: Provide the context
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
-        <CssBaseline/>
+        <CssBaseline />
         <div className='app'>
-          {/* Conditional rendering of sidebar */}
           {shouldDisplaySidebar && <Sidebar isSideBar={isSideBar} />}
           <main className='content'>
-            {/* Conditional rendering of topbar */}
             {shouldDisplayTopbar && <Topbar setIsSideBar={setIsSideBar} />}
-            <Routes>
-              {/* Redirect from root to /dashboard */}
-              <Route path="/" element={<Navigate to="/login" />} />
-              <Route path="/dashboard" element={<Dashboard
-                selectedTable={selectedTable} setSelectedTable={setSelectedTable}
-                selectedItem={selectedItem}
-              />} />
-              <Route path="/menu" element={<Menu
-                selectedTable={selectedTable} setSelectedTable={setSelectedTable}
-                selectedItem={selectedItem} setSelectedItem={setSelectedItem}
-                subTotal={subTotal} setSubTotal={setSubTotal} total={total} setTotal={setTotal}
-              />}/>
-              <Route path="/payment" element={<Payment
-                selectedTable={selectedTable} setSelectedTable={setSelectedTable}
-                selectedItem={selectedItem} setSelectedItem={setSelectedItem}
-                total={total} subTotal={subTotal}/>}
-              />
-              <Route path="/orders" element={<Orders />} />
-              <Route path="/bar" element={<BarChart />} />
-              <Route path="/line" element={<LineChart />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup/>}/>
-            </Routes>
+            {/* Step 4: Wrap your Routes with SnackbarProvider */}
+            <SnackbarProvider maxSnack={3}>
+              <Routes>
+                <Route path="/" element={<Navigate to="/login" />} />
+                <Route path="/dashboard" element={<Dashboard selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} />} />
+                <Route path="/menu" element={<Menu selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem} subTotal={subTotal} setSubTotal={setSubTotal} total={total} setTotal={setTotal} />} />
+                <Route path="/payment" element={<Payment selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem} total={total} subTotal={subTotal} />} />
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/bar" element={<BarChart />} />
+                <Route path="/line" element={<LineChart />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+              </Routes>
+            </SnackbarProvider>
           </main>
         </div>
       </ThemeProvider>
