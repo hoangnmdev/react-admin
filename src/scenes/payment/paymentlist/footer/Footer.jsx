@@ -3,9 +3,11 @@ import Typography from '@mui/material/Typography'
 import AlertDialog from '~/components/AlertDialog'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useSnackbar } from 'notistack'
 
 function Footer({ setSelectedTable, setSelectedItem }) {
   const [cancelDialogOpen, setCancelDialogOpen] = useState(false)
+  const { enqueueSnackbar } = useSnackbar()
   const navigate = useNavigate()
   const handleCancelDialogClose = () => {
     setCancelDialogOpen(false)
@@ -16,6 +18,7 @@ function Footer({ setSelectedTable, setSelectedItem }) {
     setSelectedTable(null)
     setSelectedItem([])
     handleCancelDialogClose()
+    enqueueSnackbar('Order cancel succesfully!', { variant: 'success' })
   }
 
   const handleCancelDialogOpen = () => {

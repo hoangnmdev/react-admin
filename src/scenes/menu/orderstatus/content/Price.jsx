@@ -3,18 +3,20 @@ import AlertDialog from '~/components/AlertDialog'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SnackBarAlert from '~/components/SnackBarAlert'
+import { useSnackbar } from 'notistack'
 
 function Price({ subTotal, setSelectedTable, setSelectedItem, total, setTotal, selectedItem }) {
   const [cancelDialogOpen, setCancelDialogOpen] = useState(false)
   const [sendDialogOpen, setSendDialogOpen] = useState(false)
   const [openSnackBar, setOpenSnackBar] = useState(false)
   const navigate = useNavigate()
+  const { enqueueSnackbar } = useSnackbar()
 
   // Ensure subTotal is treated as a number
   const subTotalNumber = parseFloat(subTotal)
 
   // Calculate the service charge
-  const serviceCharge = (subTotalNumber * 0.10).toFixed(3) // 10% service charge, fixed to 2 decimal places
+  const serviceCharge = (subTotalNumber * 0.10).toFixed(3) // 10% service charge, fixed to 3 decimal places
 
   useEffect(() => {
     // Ensure total calculation is done with numbers
@@ -47,11 +49,13 @@ function Price({ subTotal, setSelectedTable, setSelectedItem, total, setTotal, s
     setSelectedTable(null)
     setSelectedItem([])
     handleCancelDialogClose()
+    enqueueSnackbar('Order cancel succesfully!', { variant: 'success' })
   }
 
   const handleConfirmSend = () => {
     navigate('/payment')
     handleSendDialogClose()
+    enqueueSnackbar('Order sent successfully!', { variant: 'success' }) // Show success snackbar
   }
 
   const handleSnackBarClose = () => {
