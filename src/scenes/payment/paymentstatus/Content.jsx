@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
-import { capitalizeLetter } from '~/utils/formatter'
 import PaymentsIcon from '@mui/icons-material/Payments'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
+import Receipt from './Receipt' // Adjust the import path as needed
+import { capitalizeLetter } from '~/utils/formatter'
 
 const ADD_TIP_TITLE = 'add tip'
 const TIP_OPTIONS = [10, 20, 30, 40]
@@ -16,18 +17,61 @@ const SERVICE_CHARGE_AMOUNT = 10
 const TOTAL_TITLE = 'total'
 const PAYNOW_TITLE = 'pay now'
 
-function Content({ subTotal }) {
+function Content({ subTotal, selectedItem }) {
   const [selectedTip, setSelectedTip] = useState(0)
+  const [paymentMethod, setPaymentMethod] = useState('')
+  const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false)
+  const [paymentSuccess, setPaymentSuccess] = useState(false)
+  const [showReceipt, setShowReceipt] = useState(false)
+  const [receiptDetails, setReceiptDetails] = useState({})
 
-  // Ensure subTotal is treated as a number
   const subTotalNumber = parseFloat(subTotal)
-  const serviceCharge = (subTotalNumber * 0.10).toFixed(3) // 10% service charge, fixed to 2 decimal places
+  const serviceCharge = (subTotalNumber * SERVICE_CHARGE_AMOUNT / 100).toFixed(3)
+  const total = (subTotalNumber + parseFloat(serviceCharge) + selectedTip).toFixed(3)
 
   const handleTipClick = (tip) => {
     setSelectedTip(tip)
   }
 
-  const total = (subTotalNumber + parseFloat(serviceCharge) + selectedTip).toFixed(3)
+  const handlePaymentMethodClick = (method) => {
+    setPaymentMethod(method)
+    setConfirmationDialogOpen(true)
+  }
+
+  const handleConfirmPayment = () => {
+    setConfirmationDialogOpen(false)
+    // Simulate payment processing
+    if (paymentMethod === 'Card') {
+      // Simulate card payment
+      setTimeout(() => {
+        setPaymentSuccess(true)
+        generateReceipt()
+      }, 1000)
+    } else if (paymentMethod === 'Cash' || paymentMethod === 'Voucher') {
+      // Confirm cash payment or validate voucher
+      setPaymentSuccess(true)
+      generateReceipt()
+    }
+  }
+
+  const generateReceipt = () => {
+    const receipt = {
+      subTotal: subTotalNumber,
+      tip: selectedTip,
+      serviceCharge: parseFloat(serviceCharge),
+      total: parseFloat(total),
+      paymentMethod: paymentMethod,
+      date: new Date().toLocaleString(),
+      item: selectedItem.map(item => ({
+        itemName: item.itemName,
+        quantity: item.quantity,
+        unitPrice: item.price,
+        amount: item.totalPrice
+      }))
+    }
+    setReceiptDetails(receipt)
+    setShowReceipt(true)
+  }
 
   return (
     <Box height={'calc(100vh - 70px - 40px - 60px)'}>
@@ -67,7 +111,9 @@ function Content({ subTotal }) {
                   }
                 }
               }
-            }} variant="contained">
+            }}
+            variant="contained"
+          >
             <Typography variant='h3' color={'#A9A9A9'}>
               {tip}
             </Typography>
@@ -83,6 +129,7 @@ function Content({ subTotal }) {
         alignItems={'center'}
       >
         <Button
+          onClick={() => handlePaymentMethodClick('Cash')}
           sx={{
             '&.MuiButton-containedPrimary': {
               bgcolor: '#FAFAFA',
@@ -105,13 +152,16 @@ function Content({ subTotal }) {
                 }
               }
             }
-          }} variant="contained">
+          }}
+          variant="contained"
+        >
           <Box>
             <PaymentsIcon sx={{ color: '#A9A9A9' }}/>
             <Typography fontWeight={'600'} color={'#A9A9A9'}>{capitalizeLetter(CASH_TITLE)}</Typography>
           </Box>
         </Button>
         <Button
+          onClick={() => handlePaymentMethodClick('Card')}
           sx={{
             '&.MuiButton-containedPrimary': {
               bgcolor: '#FAFAFA',
@@ -134,13 +184,16 @@ function Content({ subTotal }) {
                 }
               }
             }
-          }} variant="contained">
+          }}
+          variant="contained"
+        >
           <Box>
             <CreditCardIcon sx={{ color: '#A9A9A9' }}/>
             <Typography fontWeight={'600'} color={'#A9A9A9'}>{capitalizeLetter(CARD_TITLE)}</Typography>
           </Box>
         </Button>
         <Button
+          onClick={() => handlePaymentMethodClick('Voucher')}
           sx={{
             '&.MuiButton-containedPrimary': {
               bgcolor: '#FAFAFA',
@@ -163,7 +216,9 @@ function Content({ subTotal }) {
                 }
               }
             }
-          }} variant="contained">
+          }}
+          variant="contained"
+        >
           <Box>
             <PaymentsIcon sx={{ color: '#A9A9A9' }}/>
             <Typography fontWeight={'600'} color={'#A9A9A9'}>{capitalizeLetter(VOUCHER_TITLE)}</Typography>
@@ -217,6 +272,7 @@ function Content({ subTotal }) {
           pt={'15px'}
         >
           <Button
+            onClick={handleConfirmPayment}
             sx={{
               '&.MuiButton-containedPrimary': {
                 bgcolor: '#7AB2B2',
@@ -234,7 +290,9 @@ function Content({ subTotal }) {
                   }
                 }
               }
-            }} variant="contained">
+            }}
+            variant="contained"
+          >
             <Typography sx={{
               fontSize: '25px',
               color: 'black',
@@ -247,6 +305,18 @@ function Content({ subTotal }) {
           </Button>
         </Box>
       </Box>
+      <Receipt
+        confirmationDialogOpen={confirmationDialogOpen}
+        setConfirmationDialogOpen={setConfirmationDialogOpen}
+        paymentMethod={paymentMethod}
+        total={total}
+        handleConfirmPayment={handleConfirmPayment}
+        paymentSuccess={paymentSuccess}
+        showReceipt={showReceipt}
+        setShowReceipt={setShowReceipt}
+        receiptDetails={receiptDetails}
+        capitalizeLetter={capitalizeLetter}
+      />
     </Box>
   )
 }
