@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import PaymentsIcon from '@mui/icons-material/Payments'
 import CreditCardIcon from '@mui/icons-material/CreditCard'
-import Receipt from './Receipt' // Adjust the import path as needed
+import Receipt from './invoice/Invoice' // Adjust the import path as needed
 import { capitalizeLetter } from '~/utils/formatter'
 
 const ADD_TIP_TITLE = 'add tip'
