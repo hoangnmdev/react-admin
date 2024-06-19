@@ -5,6 +5,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import FastfoodIcon from '@mui/icons-material/Fastfood'
 import { useState, useEffect } from 'react'
 import AlertDialog from '~/components/AlertDialog'
+import { useSnackbar } from 'notistack'
 
 export default function OrderCard({ selectedItem, setSelectedItem, setSubTotal }) {
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -12,7 +13,11 @@ export default function OrderCard({ selectedItem, setSelectedItem, setSubTotal }
   const [selectedImage, setSelectedImage] = useState(null)
   const [selectedImageTitle, setSelectedImageTitle] = useState(null)
   const [itemRemove, setItemRemove] = useState(null) // State to store item name to remove
+  const { enqueueSnackbar } = useSnackbar()
 
+  const handleConfirmSend = () => {
+    enqueueSnackbar('Remove item successfully!', { variant: 'success' }) // Show success snackbar
+  }
   useEffect(() => {
     const subtotal = selectedItem.reduce((sum, item) => sum + parseFloat(item.totalPrice), 0).toFixed(3)
     setSubTotal(subtotal)
@@ -40,6 +45,7 @@ export default function OrderCard({ selectedItem, setSelectedItem, setSubTotal }
       const newData = [...selectedItem]
       newData.splice(indexToDelete, 1)
       setSelectedItem(newData)
+      handleConfirmSend()
     }
     handleDialogClose() // Close the dialog
   }
