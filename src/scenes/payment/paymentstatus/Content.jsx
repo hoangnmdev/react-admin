@@ -17,7 +17,7 @@ const SERVICE_CHARGE_AMOUNT = 10
 const TOTAL_TITLE = 'total'
 const PAYNOW_TITLE = 'pay now'
 
-function Content({ subTotal, selectedItem }) {
+function Content({ subTotal, selectedItem, selectedTable }) {
   const [selectedTip, setSelectedTip] = useState(0)
   const [paymentMethod, setPaymentMethod] = useState('')
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false)
@@ -60,6 +60,7 @@ function Content({ subTotal, selectedItem }) {
       tip: selectedTip,
       serviceCharge: parseFloat(serviceCharge),
       total: parseFloat(total),
+      table: selectedTable.tableName,
       paymentMethod: paymentMethod,
       date: new Date().toLocaleString(),
       item: selectedItem.map(item => ({
