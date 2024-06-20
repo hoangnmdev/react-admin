@@ -6,6 +6,8 @@ import ReactToPrint from 'react-to-print'
 import { useRef, useState } from 'react'
 import { postPaymentStatus } from '~/apis/payment'
 import SuccessMessage from './SuccessMessage'
+import { useNavigate } from 'react-router-dom'
+
 import {
   Dialog,
   Box,
@@ -24,9 +26,12 @@ function InvoiceDialog({
   receiptDetails,
   capitalizeLetter,
   selectedTable,
-  selectedTip
+  selectedTip,
+  setSelectedTable,
+  setSelectedItem
 }) {
   let componentRef = useRef()
+  const navigate = useNavigate()
   const [successMessageOpen, setSuccessMessageOpen] = useState(false)
 
   const handlePay = async () => {
@@ -38,9 +43,15 @@ function InvoiceDialog({
     }
   }
 
+  const resetReceiptDetails = () => {
+    setSelectedItem([])
+    setSelectedTable(null)
+  }
+
   const handleCloseSuccessMessage = () => {
     setSuccessMessageOpen(false)
-    // Perform any additional actions upon closing the success message
+    resetReceiptDetails()
+    navigate('/dashboard')
   }
 
   return (
@@ -162,7 +173,7 @@ function InvoiceDialog({
             {paymentSuccess && (
               <>
                 <ReactToPrint
-                  trigger={() => <Button >Print</Button>}
+                  trigger={() => <Button>Print</Button>}
                   content={() => componentRef}
                 />
                 <Button onClick={handlePay}>Pay</Button>
