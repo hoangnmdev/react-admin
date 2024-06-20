@@ -11,7 +11,9 @@ const Payment = ({ selectedTable, setSelectedTable, selectedItem, setSelectedIte
     borderTop= '2px solid rgba(0, 0, 0, 0.1)'
     >
      <PaymentList selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
-     <OrderStatus selectedTable={selectedTable} total={total} subTotal={subTotal} selectedItem={selectedItem}/>
+     <OrderStatus selectedTable={selectedTable} total={total}
+     subTotal={subTotal} selectedItem={selectedItem}
+     setSelectedTable={setSelectedTable} setSelectedItem={setSelectedItem}/>
     </Box>
   )
 }
