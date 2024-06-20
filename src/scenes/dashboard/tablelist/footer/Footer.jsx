@@ -1,12 +1,10 @@
 import { Box, Button, Typography } from '@mui/material'
 import TableBarIcon from '@mui/icons-material/TableBar'
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount'
 import { useState } from 'react'
 import SnackBarAlert from '~/components/SnackBarAlert'
 import { capitalizeLetter } from '~/utils/formatter'
 import { useNavigate } from 'react-router-dom'
 
-const GUEST_TITLE = 'guest:'
 const TABLE_TITLE = 'table:'
 
 function Footer({ selectedTable }) {
@@ -50,23 +48,6 @@ function Footer({ selectedTable }) {
             color={'#F0B86E'}
             ml={'5px'}>
             {selectedTable ? `${selectedTable.tableId}` : ''}
-          </Typography>
-        </Box>
-        <Box display={'flex'} alignItems={'center'}>
-          <SupervisorAccountIcon sx={{ fontSize: '20px', mr: '10px' }} />
-          <Typography
-            fontSize={'15px'}
-            color="initial"
-          >
-            {capitalizeLetter(GUEST_TITLE)}
-          </Typography>
-          <Typography
-            fontWeight={'600'}
-            fontSize={'22px'}
-            color={'#F0B86E'}
-            ml={'5px'}
-          >
-            {selectedTable ? selectedTable.numberOfGuest : ''}
           </Typography>
         </Box>
       </Box>

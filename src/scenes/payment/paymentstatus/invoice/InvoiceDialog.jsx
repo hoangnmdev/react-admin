@@ -23,14 +23,15 @@ function InvoiceDialog({
   setShowReceipt,
   receiptDetails,
   capitalizeLetter,
-  selectedTable
+  selectedTable,
+  selectedTip
 }) {
   let componentRef = useRef()
   const [successMessageOpen, setSuccessMessageOpen] = useState(false)
 
   const handlePay = async () => {
     try {
-      await postPaymentStatus(receiptDetails, setShowReceipt, selectedTable)
+      await postPaymentStatus(receiptDetails, setShowReceipt, selectedTable, selectedTip)
       setSuccessMessageOpen(true)
     } catch (error) {
       console.error('Error processing payment:', error)
@@ -75,7 +76,7 @@ function InvoiceDialog({
                   <Typography variant='h6' fontWeight={'600'}>Invoice Details</Typography>
                   <Typography fontSize={'10px'}>Date: {receiptDetails.date}</Typography>
                   <Typography fontSize={'10px'}>Table: {receiptDetails.table}</Typography>
-                  <Typography fontSize={'10px'}>Order #{receiptDetails.orderId}</Typography>
+                  <Typography fontSize={'10px'}>Order #{receiptDetails.orderNumber}</Typography>
                 </Box>
               </Box>
               <Divider sx={{ my: 1 }} />

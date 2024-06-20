@@ -12,17 +12,6 @@ function Title({ selectedTable }) {
       height={'40px'}
     >
       <Box display={'flex'} alignItems={'center'}>
-        <SupervisorAccountIcon sx={{ fontSize: '20px', mr: '10px' }} />
-        <Typography fontSize={'15px'} color="initial">GUEST:</Typography>
-        <Typography
-          fontWeight={'600'}
-          fontSize={'22px'}
-          color={'#F0B86E'}
-          ml={'5px'}>
-          {selectedTable ? `${selectedTable.numberOfGuest}` : ''}
-        </Typography>
-      </Box>
-      <Box display={'flex'} alignItems={'center'}>
         <TableBarIcon
           sx={{
             fontSize: '20px',

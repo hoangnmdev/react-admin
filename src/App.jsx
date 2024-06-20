@@ -19,6 +19,7 @@ function App() {
   const [theme, colorMode] = useMode()
   const [isSideBar, setIsSideBar] = useState(true)
   const location = useLocation()
+  // const [tables, setTables] = useState([])
   const [selectedTable, setSelectedTable] = useState(null) // State to store selected table details
   const [selectedItem, setSelectedItem] = useState([])
   const [subTotal, setSubTotal] = useState(0)
@@ -42,7 +43,10 @@ function App() {
             <SnackbarProvider maxSnack={3}>
               <Routes>
                 <Route path="/" element={<Navigate to="/login" />} />
-                <Route path="/dashboard" element={<Dashboard selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} />} />
+                <Route path="/dashboard" element={<Dashboard
+                  selectedTable={selectedTable} setSelectedTable={setSelectedTable}
+                  selectedItem={selectedItem}
+                />} />
                 <Route path="/menu" element={<Menu selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem} subTotal={subTotal} setSubTotal={setSubTotal} total={total} setTotal={setTotal} />} />
                 <Route path="/payment" element={<Payment selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem} total={total} subTotal={subTotal} />} />
                 <Route path="/orders" element={<Orders />} />

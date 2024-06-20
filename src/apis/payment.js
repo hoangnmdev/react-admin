@@ -5,7 +5,7 @@ const API_URL = 'http://127.0.0.1:5000/payment'
 
 export const postPaymentStatus = async (receiptDetails, setShowReceipt, selectedTable, selectedTip) => {
   try {
-    const response = await axios.post(`${API_URL}/paymentstatus`, {
+    const response = await axios.post(`${API_URL}/payment_status`, {
       table: selectedTable.tableName,
       itemName: receiptDetails.item.map(item => item.itemName).join(', '), // Adjust as needed
       price: receiptDetails.item.reduce((total, item) => total + item.unitPrice * item.quantity, 0).toFixed(3),
@@ -14,7 +14,8 @@ export const postPaymentStatus = async (receiptDetails, setShowReceipt, selected
       serviceCharge: (receiptDetails.serviceCharge).toFixed(3),
       total: (receiptDetails.total).toFixed(3),
       date: new Date().toLocaleString('en-GB', { hour12: false }),
-      orderId: selectedTable.orderId
+      tip: selectedTip.toFixed(3),
+      orderNumber: selectedTable.orderNumber
     })
     console.log(response.data)
     setShowReceipt(false) // Close the dialog on success

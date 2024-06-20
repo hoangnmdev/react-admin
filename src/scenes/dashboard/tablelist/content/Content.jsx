@@ -1,6 +1,6 @@
-// src/components/tablelist/content/Content.jsx
 import { Box, Grid, Paper } from '@mui/material'
 import { experimentalStyled as styled } from '@mui/material/styles'
+import { assignOrderNumber } from '~/apis/tablelist'
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -23,8 +23,20 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 function Content({ tableList, setSelectedTable }) {
-  const handleTableClick = (table) => {
-    setSelectedTable(table)
+  const handleTableClick = async (table) => {
+    try {
+      const response = await assignOrderNumber(table.tableId)
+      const { orderNumber } = response.data
+
+      // Update the selected table with the order number
+      setSelectedTable({
+        ...table,
+        orderNumber
+      })
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to assign order number', error)
+    }
   }
 
   return (

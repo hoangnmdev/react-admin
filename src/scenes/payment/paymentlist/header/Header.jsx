@@ -33,7 +33,7 @@ function Header({ selectedTable }) {
     >
       <Box>
         <Typography fontSize={'25px'} ml={'10px'} display={'inline'}>{capitalizeLetter(ORDER_TITLE)}</Typography>
-        <Typography fontSize={'25px'} display={'inline'} ml={'5px'}>{selectedTable ? `${selectedTable.orderId}` : ''}</Typography>
+        <Typography fontSize={'25px'} display={'inline'} ml={'5px'}>{selectedTable ? `${selectedTable.orderNumber}` : ''}</Typography>
       </Box>
       <Box display={'flex'}>
         <Box display={'flex'} alignItems={'center'}>

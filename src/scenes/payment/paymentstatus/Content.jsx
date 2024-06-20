@@ -61,7 +61,7 @@ function Content({ subTotal, selectedItem, selectedTable }) {
       serviceCharge: parseFloat(serviceCharge),
       total: parseFloat(total),
       table: selectedTable.tableName,
-      orderId: selectedTable.orderId,
+      orderNumber: selectedTable.orderNumber,
       paymentMethod: paymentMethod,
       date: new Date().toLocaleString(),
       item: selectedItem.map(item => ({
@@ -319,6 +319,7 @@ function Content({ subTotal, selectedItem, selectedTable }) {
         receiptDetails={receiptDetails}
         capitalizeLetter={capitalizeLetter}
         selectedTable={selectedTable}
+        selectedTip={selectedTip}
       />
     </Box>
   )
