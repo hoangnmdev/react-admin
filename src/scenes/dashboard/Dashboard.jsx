@@ -3,6 +3,8 @@ import TableList from './tablelist/TableList'
 import OrderStatus from './orderstatus/OrderStatus'
 
 const Dashboard = ({ selectedTable, setSelectedTable, selectedItem }) => {
+  // eslint-disable-next-line no-console
+  console.log('selectedTable', selectedTable)
   return (
     <Box
       height={'calc(100vh - 70px)'}
