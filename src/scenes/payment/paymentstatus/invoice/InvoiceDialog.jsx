@@ -1,9 +1,11 @@
+/* eslint-disable no-console */
 import PhoneIcon from '@mui/icons-material/Phone'
 import EmailIcon from '@mui/icons-material/Email'
 import LocationOnIcon from '@mui/icons-material/LocationOn'
 import ReactToPrint from 'react-to-print'
-import { useRef } from 'react'
-
+import { useRef, useState } from 'react'
+import { postPaymentStatus } from '~/apis/payment'
+import SuccessMessage from './SuccessMessage'
 import {
   Dialog,
   Box,
@@ -14,13 +16,31 @@ import {
   Button,
   Divider
 } from '@mui/material'
+
 function InvoiceDialog({
   paymentSuccess,
   showReceipt,
   setShowReceipt,
   receiptDetails,
-  capitalizeLetter }) {
+  capitalizeLetter,
+  selectedTable
+}) {
   let componentRef = useRef()
+  const [successMessageOpen, setSuccessMessageOpen] = useState(false)
+
+  const handlePay = async () => {
+    try {
+      await postPaymentStatus(receiptDetails, setShowReceipt, selectedTable)
+      setSuccessMessageOpen(true)
+    } catch (error) {
+      console.error('Error processing payment:', error)
+    }
+  }
+
+  const handleCloseSuccessMessage = () => {
+    setSuccessMessageOpen(false)
+    // Perform any additional actions upon closing the success message
+  }
 
   return (
     <>
@@ -38,24 +58,24 @@ function InvoiceDialog({
           }}
         >
           <Box ref={(el) => (componentRef = el)}>
-            <DialogTitle
-              sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <img src="src/assets/logo.png" alt="Company Logo" style={{ width: '70px' }} />
               <Typography variant='h1' fontWeight={'bold'}>{capitalizeLetter('invoice')}</Typography>
             </DialogTitle>
-            <DialogContent >
+            <DialogContent>
               <Box display="flex" justifyContent="space-between" alignItems={'center'}>
                 <Box>
                   <Typography variant='body1' mt={2} fontSize={'10px'} fontWeight={'500'}>
-                Phở 10 Lý Quốc Sư<br />
-                10 P. Lý Quốc Sư, Hàng Trống, Hoàn Kiếm, Hà Nội<br />
-                Hanoi, Vietnam-100000<br />
+                    Phở 10 Lý Quốc Sư<br />
+                    10 P. Lý Quốc Sư, Hàng Trống, Hoàn Kiếm, Hà Nội<br />
+                    Hanoi, Vietnam-100000<br />
                   </Typography>
                 </Box>
                 <Box textAlign="right">
                   <Typography variant='h6' fontWeight={'600'}>Invoice Details</Typography>
                   <Typography fontSize={'10px'}>Date: {receiptDetails.date}</Typography>
                   <Typography fontSize={'10px'}>Table: {receiptDetails.table}</Typography>
+                  <Typography fontSize={'10px'}>Order #{receiptDetails.orderId}</Typography>
                 </Box>
               </Box>
               <Divider sx={{ my: 1 }} />
@@ -144,12 +164,15 @@ function InvoiceDialog({
                   trigger={() => <Button >Print</Button>}
                   content={() => componentRef}
                 />
-                <Button onClick={() => { /* Handle payment processing here */ }}>Pay</Button>
+                <Button onClick={handlePay}>Pay</Button>
               </>
             )}
           </DialogActions>
         </Dialog>
       )}
+
+      {/* Display SuccessMessage when payment is successful */}
+      <SuccessMessage open={successMessageOpen} onClose={handleCloseSuccessMessage}/>
     </>
   )
 }
