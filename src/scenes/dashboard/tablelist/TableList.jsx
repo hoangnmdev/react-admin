@@ -23,10 +23,7 @@ function TableList({ setSelectedTable, selectedTable }) {
   }, [])
 
   return (
-    <Box
-      width={'1000px'}
-      borderRight='2px solid rgba(0, 0, 0, 0.1)'
-    >
+    <Box width={'1000px'} borderRight='2px solid rgba(0, 0, 0, 0.1)'>
       {/* Header */}
       <Header />
       {/* Content */}

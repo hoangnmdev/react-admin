@@ -14,7 +14,8 @@ function Receipt({
   setShowReceipt,
   receiptDetails,
   capitalizeLetter,
-  selectedTable
+  selectedTable,
+  selectedTip
 }) {
   // const [showQRCode, setShowQRCode] = useState(false)
   useEffect(() => {
@@ -33,6 +34,7 @@ function Receipt({
         receiptDetails={receiptDetails}
         capitalizeLetter={capitalizeLetter}
         selectedTable={selectedTable}
+        selectedTip={selectedTip}
       />
       <ConfirmDialog
         confirmationDialogOpen={confirmationDialogOpen}

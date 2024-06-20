@@ -26,7 +26,7 @@ function Header({ selectedTable }) {
           p={'12px'}
           ml={'10px'}
         >
-          {selectedTable ? `${selectedTable.orderId}` : ''}
+          {selectedTable ? `${selectedTable.orderNumber}` : ''}
         </Typography>
       </Box>
     </Box>
