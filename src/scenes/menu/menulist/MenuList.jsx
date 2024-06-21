@@ -3,14 +3,12 @@ import { Box } from '@mui/material'
 import Content from './content/Content'
 import { useState, useEffect } from 'react'
 import Footer from './footer/Footer'
-import { getPhoBoMenu } from '~/apis/menu'
-import { getPhoGaMenu } from '~/apis/menu'
-import { getComNieuMenu } from '~/apis/menu'
-import { getMonThemMenu } from '~/apis/menu'
+import { getPhoBoMenu, getPhoGaMenu, getComNieuMenu, getMonThemMenu } from '~/apis/menu'
 
-function MenuList({ selectedItem, setSelectedItem }) {
+function MenuList({ selectedItem, setSelectedItem, FilteredMenuList, setFilteredMenuList, setSearchPerformed, searchPerformed }) {
   const [menuList, setMenuList] = useState([])
   const [selectedMenu, setSelectedMenu] = useState('PhoBo')
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,21 +22,28 @@ function MenuList({ selectedItem, setSelectedItem }) {
                 ? await getMonThemMenu()
                 : []
         setMenuList(data)
+        setFilteredMenuList([])
+        setSearchPerformed(false)
       } catch (error) {
         console.log('There was an error fetching the menu', error)
       }
     }
 
     fetchData()
-  }, [selectedMenu])
+  }, [selectedMenu, setFilteredMenuList, setSearchPerformed])
+
   return (
-    <Box
-      width={'1000px'}
-      borderRight= '2px solid rgba(0, 0, 0, 0.1)'
-    >
-      {/*Content*/}
-      <Content menuList={menuList} selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
-      {/*Footer*/}
+    <Box width={'1000px'} borderRight='2px solid rgba(0, 0, 0, 0.1)'>
+      {/* Content */}
+      <Content
+        menuList={menuList}
+        selectedItem={selectedItem}
+        setSelectedItem={setSelectedItem}
+        FilteredMenuList={FilteredMenuList}
+        setFilteredMenuList={setFilteredMenuList}
+        searchPerformed={searchPerformed}
+      />
+      {/* Footer */}
       <Footer
         fetchPhoBoMenu={() => setSelectedMenu('PhoBo')}
         fetchPhoGaMenu={() => setSelectedMenu('PhoGa')}

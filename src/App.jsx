@@ -24,7 +24,8 @@ function App() {
   const [selectedItem, setSelectedItem] = useState([])
   const [subTotal, setSubTotal] = useState(0)
   const [total, setTotal] = useState(0)
-
+  const [FilteredMenuList, setFilteredMenuList] = useState([])
+  const [searchPerformed, setSearchPerformed] = useState(false)
   // Hide sidebar and topbar on the login page
   const isLoginPage = location.pathname === '/login'
   const isSignupPage = location.pathname === '/signup'
@@ -38,7 +39,10 @@ function App() {
         <div className='app'>
           {shouldDisplaySidebar && <Sidebar isSideBar={isSideBar} />}
           <main className='content'>
-            {shouldDisplayTopbar && <Topbar setIsSideBar={setIsSideBar} />}
+            {shouldDisplayTopbar && <Topbar setIsSideBar={setIsSideBar}
+              setFilteredMenuList={setFilteredMenuList} FilteredMenuList={FilteredMenuList}
+              searchPerformed={searchPerformed} setSearchPerformed={setSearchPerformed}
+            />}
             {/* Step 4: Wrap your Routes with SnackbarProvider */}
             <SnackbarProvider maxSnack={3}>
               <Routes>
@@ -47,7 +51,13 @@ function App() {
                   selectedTable={selectedTable} setSelectedTable={setSelectedTable}
                   selectedItem={selectedItem}
                 />} />
-                <Route path="/menu" element={<Menu selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem} subTotal={subTotal} setSubTotal={setSubTotal} total={total} setTotal={setTotal} />} />
+                <Route path="/menu" element={<Menu
+                  selectedTable={selectedTable} setSelectedTable={setSelectedTable}
+                  selectedItem={selectedItem} setSelectedItem={setSelectedItem}
+                  subTotal={subTotal} setSubTotal={setSubTotal}
+                  total={total} setTotal={setTotal}
+                  FilteredMenuList={FilteredMenuList} setFilteredMenuList={setFilteredMenuList}
+                  searchPerformed={searchPerformed} setSearchPerformed={setSearchPerformed}/>}/>
                 <Route path="/payment" element={<Payment selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem} total={total} subTotal={subTotal} />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/bar" element={<BarChart />} />
