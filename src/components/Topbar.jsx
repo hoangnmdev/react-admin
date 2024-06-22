@@ -8,8 +8,9 @@ import Profile from '~/components/Profile'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import { displayCalendar } from '~/utils/calendar'
 import { searchItem } from '~/apis/menu'
+import { searchOrder } from '~/apis/order'
 
-function Topbar({ setFilteredMenuList, setSearchPerformed }) {
+function Topbar({ setFilteredMenuList, setSearchPerformed, setFilterOrderList }) {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
   const colorMode = useContext(ColorModeContext)
@@ -25,11 +26,22 @@ function Topbar({ setFilteredMenuList, setSearchPerformed }) {
   }, [])
 
   const handleSearch = async () => {
+    if (!searchTerm.trim('')) {
+      return
+    }
+
     try {
-      const results = await searchItem(searchTerm)
-      setFilteredMenuList(results)
+      const isOrderSearch = Number(searchTerm)
+      if (isOrderSearch) {
+        const results = await searchOrder(searchTerm)
+        console.log('results', results)
+        setFilterOrderList(results)
+      } else {
+        const results = await searchItem(searchTerm)
+        console.log('results', results)
+        setFilteredMenuList(results)
+      }
       setSearchPerformed(true)
-      console.log('result', results) // Pass filtered results to Content component
     } catch (error) {
       console.error('Error searching for item:', error)
     }
@@ -54,7 +66,7 @@ function Topbar({ setFilteredMenuList, setSearchPerformed }) {
       >
         <InputBase
           sx={{ ml: 2, flex: 1 }}
-          placeholder='Search product or any order...'
+          placeholder='Search an item or any order...'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyPress={handleKeyPress}
