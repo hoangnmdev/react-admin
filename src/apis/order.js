@@ -1,19 +1,31 @@
+/* eslint-disable no-console */
 import axios from 'axios'
 
 const API_URL = 'http://127.0.0.1:5000/orders'
 
-export const fetchOrders = async (setRows) => {
+export const fetchOrders = async () => {
   try {
     const response = await axios.get(`${API_URL}/order`)
-    setRows(response.data.map((order) => ({
-      sl: order.orderId,
+    return response.data.map((order) => ({
+      orderId: order.orderId,
       total: order.total,
       tableName: order.tableName,
       time: order.time,
       orderNumber: order.orderNumber
-    })))
+    }))
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Error fetching orders:', error)
+    return []
+  }
+}
+
+export const searchOrder = async (orderNumber) => {
+  try {
+    const response = await axios.get(`${API_URL}/search/${orderNumber}`)
+    console.log('API Response:', response) // Debug log
+    return response.data
+  } catch (error) {
+    console.error('Error searching for order:', error)
+    return []
   }
 }

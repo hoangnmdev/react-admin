@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Box, Grid, Typography } from '@mui/material'
 import MenuCard from './MenuCard'
 import NoFoodIcon from '@mui/icons-material/NoFood'
@@ -17,7 +18,8 @@ function Content({ menuList, setSelectedItem, FilteredMenuList, searchPerformed 
   }
 
   const itemsToDisplay = FilteredMenuList.length > 0 ? FilteredMenuList : menuList
-  // console.log('searchperform', searchPerformed)
+  console.log('searchperform', searchPerformed)
+  console.log('FilteredMenuList', FilteredMenuList)
   return (
     <Box height={'460px'} sx={{ overflowY: 'auto' }}>
       <Box sx={{ flexGrow: 1 }}>

@@ -19,12 +19,12 @@ function App() {
   const [theme, colorMode] = useMode()
   const [isSideBar, setIsSideBar] = useState(true)
   const location = useLocation()
-  // const [tables, setTables] = useState([])
   const [selectedTable, setSelectedTable] = useState(null) // State to store selected table details
   const [selectedItem, setSelectedItem] = useState([])
   const [subTotal, setSubTotal] = useState(0)
   const [total, setTotal] = useState(0)
   const [FilteredMenuList, setFilteredMenuList] = useState([])
+  const [FilterOrderList, setFilterOrderList] = useState([])
   const [searchPerformed, setSearchPerformed] = useState(false)
   // Hide sidebar and topbar on the login page
   const isLoginPage = location.pathname === '/login'
@@ -39,14 +39,16 @@ function App() {
         <div className='app'>
           {shouldDisplaySidebar && <Sidebar isSideBar={isSideBar} />}
           <main className='content'>
-            {shouldDisplayTopbar && <Topbar setIsSideBar={setIsSideBar}
+            {shouldDisplayTopbar && <Topbar
+              setIsSideBar={setIsSideBar}
               setFilteredMenuList={setFilteredMenuList} FilteredMenuList={FilteredMenuList}
               searchPerformed={searchPerformed} setSearchPerformed={setSearchPerformed}
+              FilterOrderList={FilterOrderList} setFilterOrderList={setFilterOrderList}
             />}
             {/* Step 4: Wrap your Routes with SnackbarProvider */}
             <SnackbarProvider maxSnack={3}>
               <Routes>
-                <Route path="/" element={<Navigate to="/login" />} />
+                <Route path="/" element={<Navigate to="/dashboard" />} />
                 <Route path="/dashboard" element={<Dashboard
                   selectedTable={selectedTable} setSelectedTable={setSelectedTable}
                   selectedItem={selectedItem}
@@ -57,9 +59,13 @@ function App() {
                   subTotal={subTotal} setSubTotal={setSubTotal}
                   total={total} setTotal={setTotal}
                   FilteredMenuList={FilteredMenuList} setFilteredMenuList={setFilteredMenuList}
-                  searchPerformed={searchPerformed} setSearchPerformed={setSearchPerformed}/>}/>
+                  searchPerformed={searchPerformed} setSearchPerformed={setSearchPerformed}
+                />}/>
                 <Route path="/payment" element={<Payment selectedTable={selectedTable} setSelectedTable={setSelectedTable} selectedItem={selectedItem} setSelectedItem={setSelectedItem} total={total} subTotal={subTotal} />} />
-                <Route path="/orders" element={<Orders />} />
+                <Route path="/orders" element={<Orders
+                  FilterOrderList={FilterOrderList} setFilterOrderList={setFilterOrderList}
+                  searchPerformed={searchPerformed} setSearchPerformed={setSearchPerformed}
+                />} />
                 <Route path="/bar" element={<BarChart />} />
                 <Route path="/line" element={<LineChart />} />
                 <Route path="/login" element={<Login />} />
