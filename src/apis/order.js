@@ -21,7 +21,18 @@ export const fetchOrders = async () => {
 
 export const searchOrder = async (orderNumber) => {
   try {
-    const response = await axios.get(`${API_URL}/search/${orderNumber}`)
+    const response = await axios.get(`${API_URL}/search/orderNumber/${orderNumber}`)
+    console.log('API Response:', response) // Debug log
+    return response.data
+  } catch (error) {
+    console.error('Error searching for order:', error)
+    return []
+  }
+}
+
+export const searchOrderByTable = async (tableName) => {
+  try {
+    const response = await axios.get(`${API_URL}/search/tableName/${tableName}`)
     console.log('API Response:', response) // Debug log
     return response.data
   } catch (error) {

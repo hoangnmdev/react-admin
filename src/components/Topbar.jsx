@@ -9,6 +9,7 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import { displayCalendar } from '~/utils/calendar'
 import { searchItem } from '~/apis/menu'
 import { searchOrder } from '~/apis/order'
+import { searchOrderByTable } from '~/apis/order'
 
 function Topbar({ setFilteredMenuList, setSearchPerformed, setFilterOrderList }) {
   const theme = useTheme()
@@ -36,10 +37,14 @@ function Topbar({ setFilteredMenuList, setSearchPerformed, setFilterOrderList })
         const results = await searchOrder(searchTerm)
         console.log('results', results)
         setFilterOrderList(results)
-      } else {
+      } if (!isOrderSearch) {
         const results = await searchItem(searchTerm)
         console.log('results', results)
         setFilteredMenuList(results)
+      } if (!isOrderSearch) {
+        const results = await searchOrderByTable(searchTerm)
+        console.log('results', results)
+        setFilterOrderList(results)
       }
       setSearchPerformed(true)
     } catch (error) {
