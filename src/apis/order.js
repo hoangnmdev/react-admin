@@ -21,7 +21,9 @@ export const fetchOrders = async () => {
 
 export const searchOrder = async (orderNumber) => {
   try {
-    const response = await axios.get(`${API_URL}/search/orderNumber/${orderNumber}`)
+    const response = await axios.get(
+      `${API_URL}/search/orderNumber/${orderNumber}`
+    )
     console.log('API Response:', response) // Debug log
     return response.data
   } catch (error) {
@@ -32,7 +34,9 @@ export const searchOrder = async (orderNumber) => {
 
 export const searchOrderByTable = async (tableName) => {
   try {
-    const response = await axios.get(`${API_URL}/search/tableName/${tableName}`)
+    const response = await axios.get(
+      `${API_URL}/search/tableName/${tableName}`
+    )
     console.log('API Response:', response) // Debug log
     return response.data
   } catch (error) {
@@ -40,3 +44,10 @@ export const searchOrderByTable = async (tableName) => {
     return []
   }
 }
+
+// export const useGetDailySalesQuery = () => {
+//   return useQuery('dailySalesData', async () => {
+//     const { data } = await axios.get(`${API_URL}/daily-sales`)
+//     return data
+//   })
+// }
