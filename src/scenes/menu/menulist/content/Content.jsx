@@ -2,9 +2,16 @@
 import { Box, Grid, Typography } from '@mui/material'
 import MenuCard from './MenuCard'
 import NoFoodIcon from '@mui/icons-material/NoFood'
+import { useSnackbar } from 'notistack'
+function Content({ menuList, setSelectedItem, FilteredMenuList, searchPerformed, selectedTable }) {
+  const { enqueueSnackbar } = useSnackbar() // Use useSnackbar hook
 
-function Content({ menuList, setSelectedItem, FilteredMenuList, searchPerformed }) {
   const handleAddItem = (item) => {
+    // Check if a table is selected before adding an item
+    if (selectedTable === null) {
+      enqueueSnackbar('Please select a table first.', { variant: 'warning' })
+      return
+    }
     setSelectedItem((prevItems) => {
       const existingItem = prevItems.find((i) => i.menuId === item.menuId)
       if (existingItem) {

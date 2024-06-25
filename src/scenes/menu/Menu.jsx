@@ -18,7 +18,9 @@ function Menu({
     >
       <MenuList selectedItem={selectedItem} setSelectedItem={setSelectedItem}
         FilteredMenuList={FilteredMenuList} setFilteredMenuList={setFilteredMenuList}
-        searchPerformed={searchPerformed} setSearchPerformed={setSearchPerformed}/>
+        searchPerformed={searchPerformed} setSearchPerformed={setSearchPerformed}
+        selectedTable={selectedTable}
+      />
       <OrderStatus selectedTable={selectedTable} setSelectedTable={setSelectedTable}
         selectedItem={selectedItem} setSelectedItem={setSelectedItem}
         subTotal={subTotal} setSubTotal={setSubTotal}
