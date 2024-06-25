@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import Footer from './footer/Footer'
 import { getPhoBoMenu, getPhoGaMenu, getComNieuMenu, getMonThemMenu } from '~/apis/menu'
 
-function MenuList({ selectedItem, setSelectedItem, FilteredMenuList, setFilteredMenuList, setSearchPerformed, searchPerformed }) {
+function MenuList({ selectedItem, setSelectedItem, FilteredMenuList, setFilteredMenuList, setSearchPerformed, searchPerformed, selectedTable }) {
   const [menuList, setMenuList] = useState([])
   const [selectedMenu, setSelectedMenu] = useState('PhoBo')
 
@@ -36,6 +36,7 @@ function MenuList({ selectedItem, setSelectedItem, FilteredMenuList, setFiltered
     <Box width={'1000px'} borderRight='2px solid rgba(0, 0, 0, 0.1)'>
       {/* Content */}
       <Content
+        selectedTable={selectedTable}
         menuList={menuList}
         selectedItem={selectedItem}
         setSelectedItem={setSelectedItem}

@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import AlertDialog from '~/components/AlertDialog'
 import { useSnackbar } from 'notistack'
 
-export default function OrderCard({ selectedItem, setSelectedItem, setSubTotal }) {
+export default function OrderCard({ selectedItem, setSelectedItem, setSubTotal, selectedTable }) {
   const [dialogOpen, setDialogOpen] = useState(false)
   const [imageOpen, setImageOpen] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
@@ -96,7 +96,7 @@ export default function OrderCard({ selectedItem, setSelectedItem, setSubTotal }
               </Box>
             </Box>
           </Box>
-        ) : (
+        ) :  (
           <div style={{ display: 'block', width: '100%' }}>
             {selectedItem.map((item, index) => (
               <Card

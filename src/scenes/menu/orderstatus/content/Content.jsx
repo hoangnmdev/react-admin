@@ -10,7 +10,7 @@ function Content({ selectedItem, setSelectedItem, subTotal, setSubTotal,
       flexDirection: 'column',
       alignItems: 'center'
     }}>
-      <OrderCard selectedItem={selectedItem} setSelectedItem={setSelectedItem}
+      <OrderCard selectedItem={selectedItem} setSelectedItem={setSelectedItem} selectedTable={selectedTable}
         setSubTotal={setSubTotal} total={total} subTotalItem={subTotalItem} setSubTotalItem={setSubTotalItem}/>
       <Price subTotal={subTotal} total={total} setTotal={setTotal} selectedTable={selectedTable} setSelectedTable={setSelectedTable}
         setSelectedItem={setSelectedItem} selectedItem={selectedItem}

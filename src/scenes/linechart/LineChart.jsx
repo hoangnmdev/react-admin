@@ -101,7 +101,7 @@ const LineChart = () => {
           </Box>
         </Box>
       </Box>
-      <Box height="70vh" m="1.5rem 2.5rem">
+      <Box height="70vh" m="1rem 1rem">
 
 
         <ResponsiveLine
